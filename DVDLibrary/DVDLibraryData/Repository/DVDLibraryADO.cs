@@ -36,7 +36,7 @@ namespace DVDLibraryData.Repository
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
-                var Directors = cn.Query<DirectorModel>("select d.FirstName, d.LastName from Directors d").ToList();
+                var Directors = cn.Query<DirectorModel>("select d.DirectorID, d.FirstName, d.LastName from Directors d").ToList();
 
                 return Directors;
             }
@@ -46,7 +46,7 @@ namespace DVDLibraryData.Repository
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
-                var Actors = cn.Query<ActorModel>("select d.FirstName, d.LastName from Actors d").ToList();
+                var Actors = cn.Query<ActorModel>("select d.ActorID, d.FirstName, d.LastName from Actors d").ToList();
 
                 return Actors;
             }

@@ -147,6 +147,10 @@
       <Project>{6b3a5de4-d0e5-48ef-8563-c9e1fbd25fa6}</Project>
       <Name>DVDLibraryData</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DVDLibraryModels\DVDLibraryModels.csproj">
+      <Project>{f515bafa-857f-43b2-bc08-84906c9e7af4}</Project>
+      <Name>DVDLibraryModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
