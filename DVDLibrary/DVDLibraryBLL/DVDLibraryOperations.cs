@@ -46,5 +46,10 @@ namespace DVDLibraryBLL
         {
             return _repo.GetRatings();
         }
+
+        public void AddMovie()
+        {
+            
+        }
     }
 }
