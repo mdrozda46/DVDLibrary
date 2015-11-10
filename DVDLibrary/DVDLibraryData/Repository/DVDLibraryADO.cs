@@ -37,7 +37,7 @@ namespace DVDLibraryData.Repository
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
-                var Directors = cn.Query<DirectorModel>("select d.FirstName, d.LastName from Directors d").ToList();
+                var Directors = cn.Query<DirectorModel>("select d.DirectorID, d.FirstName, d.LastName from Directors d").ToList();
 
                 return Directors;
             }
@@ -47,7 +47,7 @@ namespace DVDLibraryData.Repository
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
-                var Actors = cn.Query<ActorModel>("select d.FirstName, d.LastName from Actors d").ToList();
+                var Actors = cn.Query<ActorModel>("select d.ActorID, d.FirstName, d.LastName from Actors d").ToList();
 
                 return Actors;
             }
@@ -73,7 +73,7 @@ namespace DVDLibraryData.Repository
             }
         }
 
-        public void AddMovieToDB(string title, DateTime dateReleased, int runTime, string synopsis, string imageUrl, int genreId, int ownerRatingId, int MPAARatingId, int studioId)
+        public int AddMovieToDB(string title, DateTime dateReleased, int runTime, string synopsis, string imageUrl, int genreId, int ownerRatingId, int MPAARatingId, int studioId)
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
@@ -87,11 +87,13 @@ namespace DVDLibraryData.Repository
                 p.Add("OwnerRatingID", ownerRatingId);
                 p.Add("MPAARatingID", MPAARatingId);
                 p.Add("StudioID", studioId);
+                p.Add("MovieID", DbType.Int32, direction: ParameterDirection.Output);
 
                 cn.Execute("AddMovie", p, commandType: CommandType.StoredProcedure);
 
                 //TODO do something with this variable
                 int movieId = p.Get<int>("MovieID");
+                return movieId;
             }
         }
 
@@ -119,7 +121,7 @@ namespace DVDLibraryData.Repository
             }
         }
 
-        public void AddMovieToInventoryDB(int movieId, bool outForRent)
+        public void AddMovieToInventoryDB(int movieId, int outForRent)
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {

@@ -35,7 +35,8 @@ namespace DVDLibraryMVC.Controllers
         [HttpPost]
         public ActionResult MovieToRepo(AddMovieCarrier newMovie)
         {
-            
+            var ops = new DVDLibraryOperations();
+            ops.AddMovie(newMovie);
         
             return RedirectToAction("Index");
         }
