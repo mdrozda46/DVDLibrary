@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DVDLibraryData.Repository;
+using DVDLibraryModels;
 
 namespace DVDLibraryBLL
 {
@@ -16,32 +17,32 @@ namespace DVDLibraryBLL
             _repo = new DVDLibraryADO();
         }
 
-        public List<string> GetMPAARatings()
+        public List<MPAARatingModel> GetMPAARatings()
         {
             return _repo.GetMPAARatings();
         }
 
-        public List<string> GetGenres()
+        public List<GenreModel> GetGenres()
         {
             return _repo.GetGenres();
         }
 
-        public List<string> GetDirectors()
+        public List<DirectorModel> GetDirectors()
         {
             return _repo.GetDirectors();
         }
 
-        public List<string> GetActors()
+        public List<ActorModel> GetActors()
         {
             return _repo.GetActors();
         }
 
-        public List<string> GetStudios()
+        public List<Studio> GetStudios()
         {
             return _repo.GetStudios();
         }
 
-        public List<int> GetRatings()
+        public List<RatingModel> GetRatings()
         {
             return _repo.GetRatings();
         }
