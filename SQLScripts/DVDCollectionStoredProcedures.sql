@@ -91,6 +91,8 @@ END
 
 GO
 
+-- ADD MOVIE TO THE INVENTORY TABLE
+
 CREATE PROCEDURE AddMovieToInventory
 (
 	@MovieID int,
@@ -111,4 +113,97 @@ BEGIN
 	)
 END
 
+GO
+
+-- ADD DIRECTOR TO DIRECTORS TABLE
+
+CREATE PROCEDURE AddDirector
+(
+	@FirstName varchar(30),	
+	@LastName varchar(30)
+)
+AS
+
+BEGIN
+	INSERT INTO dbo.Directors
+	(
+		FirstName,
+		LastName
+	)
+
+	VALUES
+	(
+		@FirstName,
+		@LastName
+	)
+END
+GO
+
+-- ADD ACTOR TO DATABASE STORED PROCEDURE
+
+CREATE PROCEDURE AddActor
+(
+	@FirstName varchar(30),	
+	@LastName varchar(30)
+)
+AS
+
+BEGIN
+	INSERT INTO dbo.Actors
+	(
+		FirstName,
+		LastName
+	)
+
+	VALUES
+	(
+		@FirstName,
+		@LastName
+	)
+END
+GO
+
+-- ADD STUDIO TO DATABASE STORED PROCEDURE
+
+CREATE PROCEDURE AddStudio
+(
+	@Name varchar(50)	
+)
+AS
+
+BEGIN
+	INSERT INTO dbo.Studios
+	(
+		Name
+	)
+
+	VALUES
+	(
+		@Name
+	)
+END
+GO
+
+-- ADD USER TO DATABASE STORED PROCEDURE
+
+CREATE PROCEDURE AddUser
+(
+	@FirstName varchar(30),	
+	@LastName varchar(30)
+)
+AS
+
+BEGIN
+	INSERT INTO dbo.Users
+	(
+		FirstName,
+		LastName
+	)
+
+	VALUES
+	(
+		@FirstName,
+		@LastName
+	)
+END
 GO
