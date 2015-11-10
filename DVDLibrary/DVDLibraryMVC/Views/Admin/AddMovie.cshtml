@@ -1,4 +1,6 @@
-﻿<form class="form-horizontal" action="/Admin/MovieToRepo" method="POST">
+﻿@model DVDLibraryMVC.Models.AddMovieViewModel
+
+<form class="form-horizontal" action="/Admin/MovieToRepo" method="POST">
     <fieldset>
         <legend>Add Movie</legend>
         <div class="form-group">
@@ -16,32 +18,29 @@
         <div class="form-group">
             <label for="inputMPAARating" class="col-lg-2 control-label">MPAA Rating</label>
             <div class="col-lg-10">
-                @*@Html.DropDownList("MPAARating", Model.DegreeDropDown, "(select)", new {@class = "form-control", @id = "inputMPAARating"})*@
+                @Html.DropDownList("MPAARating", Model.MPAARatings, "(select)", new { @class = "form-control", @id = "inputMPAARating" })
             </div>
         </div>
         <div class="form-group">
             <label for="inputDirector" class="col-lg-2 control-label">Directed By</label>
             <div class="col-lg-10">
-                @*@Html.DropDownList("Director", Model.DegreeDropDown, "(select)", new {@class = "form-control", @id = "inputDirector"})*@
+                @Html.DropDownList("Director", Model.Directors, "(select)", new { @class = "form-control", @id = "inputDirector" })
             </div>
         </div>
         <div class="form-group">
             <label for="inputStudio" class="col-lg-2 control-label">Studio</label>
             <div class="col-lg-10">
-                @*@Html.DropDownList("Studio", Model.DegreeDropDown, "(select)", new {@class = "form-control", @id = "inputStudio"})*@
+                @Html.DropDownList("Studio", Model.Studios, "(select)", new { @class = "form-control", @id = "inputStudio" })
             </div>
         </div>
         <div class="form-group">
             <label for="inputActors" class="col-lg-2 control-label">Actors</label>
             <div class="col-lg-10">
                 <select multiple="" class="form-control" id="inputActors" name="Actors">
-                    @*@foreach (var m in Model.Actors)
+                    @foreach (var a in Model.Actors)
                     {
-                        <option value=m.Value>m.Text</option>
-                    }*@
-                    <option value="hi">John Walker</option>
-                    <option value="bye">Matt Damon</option>
-                    <option value="byebye">Emma Watson</option>
+                        <option value=@a.Value>@a.Text</option>
+                    }
                 </select>
                 <span class="help-block">Ctrl+click for multiselect</span>
             </div>
@@ -56,7 +55,7 @@
         <div class="form-group">
             <label for="inputOwnerRating" class="col-lg-2 control-label">Owner Rating</label>
             <div class="col-lg-10">
-                @*@Html.DropDownList("OwnerRating", Model.OwnerRatingDropDown, "(select)", new {@class = "form-control", @id = "inputOwnerRating"})*@
+                @Html.DropDownList("OwnerRating", Model.Ratings, "(select)", new { @class = "form-control", @id = "inputOwnerRating" })
             </div>
         </div>
         <div class="form-group">

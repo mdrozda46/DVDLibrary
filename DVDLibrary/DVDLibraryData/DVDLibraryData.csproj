@@ -54,10 +54,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DVDLibraryModels\DVDLibraryModels.csproj">
-      <Project>{f515bafa-857f-43b2-bc08-84906c9e7af4}</Project>
-      <Name>DVDLibraryModels</Name>
-    </ProjectReference>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

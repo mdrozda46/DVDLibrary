@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DVDLibraryBLL;
+using DVDLibraryMVC.Models;
 
 namespace DVDLibraryMVC.Controllers
 {
@@ -16,7 +18,17 @@ namespace DVDLibraryMVC.Controllers
 
         public ActionResult AddMovie()
         {
-            return View();
+            var ops = new DVDLibraryOperations();
+            var mpaa = ops.GetMPAARatings();
+            var genres = ops.GetGenres();
+            var directors = ops.GetDirectors();
+            var studios = ops.GetStudios();
+            var actors = ops.GetActors();
+            var ratings = ops.GetRatings();
+            
+            var addMovieVM = new AddMovieViewModel(mpaa, genres, directors, studios, actors, ratings);
+
+            return View(addMovieVM);
         }
 
         [HttpPost]
