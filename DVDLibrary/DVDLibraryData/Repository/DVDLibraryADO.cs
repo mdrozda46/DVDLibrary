@@ -12,61 +12,61 @@ namespace DVDLibraryData.Repository
 {
     public class DVDLibraryADO
     {
-        public List<string> GetMPAARatings()
+        public List<MPAARatingModel> GetMPAARatings()
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
-                var MPAARatings = cn.Query<string>("select MPAARating from MPAARatings").ToList();
+                var MPAARatings = cn.Query<MPAARatingModel>("select mp.MPAARatingID, mp.MPAARating from MPAARatings mp").ToList();
 
                 return MPAARatings;
             }
         }
 
-        public List<string> GetGenres()
+        public List<GenreModel> GetGenres()
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
-                var Genres = cn.Query<string>("select Genre from Genres").ToList();
+                var Genres = cn.Query<GenreModel>("select g.GenreID, g.Genre from Genres g").ToList();
 
                 return Genres;
             }
         }
 
-        public List<string> GetDirectors()
+        public List<DirectorModel> GetDirectors()
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
-                var Directors = cn.Query<string>("select d.FirstName + ' ' + d.LastName from Directors d").ToList();
+                var Directors = cn.Query<DirectorModel>("select d.FirstName, d.LastName from Directors d").ToList();
 
                 return Directors;
             }
         }
 
-        public List<string> GetActors()
+        public List<ActorModel> GetActors()
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
-                var Actors = cn.Query<string>("select d.FirstName + ' ' + d.LastName from Actors d").ToList();
+                var Actors = cn.Query<ActorModel>("select d.FirstName, d.LastName from Actors d").ToList();
 
                 return Actors;
             }
         }
 
-        public List<string> GetStudios()
+        public List<Studio> GetStudios()
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
-                var Studios = cn.Query<string>("select Name from Studios").ToList();
+                var Studios = cn.Query<Studio>("select * from Studios").ToList();
 
                 return Studios;
             }
         }
 
-        public List<int> GetRatings()
+        public List<RatingModel> GetRatings()
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
-                var Ratings = cn.Query<int>("select Rating from Ratings").ToList();
+                var Ratings = cn.Query<RatingModel>("select * from Ratings").ToList();
 
                 return Ratings;
             }
