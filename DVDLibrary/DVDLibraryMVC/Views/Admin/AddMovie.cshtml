@@ -12,31 +12,49 @@
         <div class="form-group">
             <label for="inputReleaseDate" class="col-lg-2 control-label">Releases Date</label>
             <div class="col-lg-10">
-                <input type="date" class="form-control" id="inputReleaseDate" name="ReleaseDate">
+                <input type="date" class="form-control" id="inputReleaseDate" name="DateReleased">
             </div>
         </div>
         <div class="form-group">
             <label for="inputMPAARating" class="col-lg-2 control-label">MPAA Rating</label>
             <div class="col-lg-10">
-                @Html.DropDownList("MPAARating", Model.MPAARatings, "(select)", new { @class = "form-control", @id = "inputMPAARating" })
+                @Html.DropDownList("MPAARatingID", Model.MPAARatings, "(select)", new {@class = "form-control", @id = "inputMPAARating"})
             </div>
         </div>
         <div class="form-group">
-            <label for="inputDirector" class="col-lg-2 control-label">Directed By</label>
+            <label for="inputGenre" class="col-lg-2 control-label">Genre</label>
             <div class="col-lg-10">
-                @Html.DropDownList("Director", Model.Directors, "(select)", new { @class = "form-control", @id = "inputDirector" })
+                @Html.DropDownList("GenreID", Model.Genres, "(select)", new {@class = "form-control", @id = "inputGenre"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputRuntime" class="col-lg-2 control-label">Runtime</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputRuntTime" placeholder="Minutes" name="RunTime">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputDirectors" class="col-lg-2 control-label">Directed By</label>
+            <div class="col-lg-10">
+                <select multiple="" class="form-control" id="inputDirectors" name="DirectorID">
+                    @foreach (var d in Model.Directors)
+                    {
+                        <option value=@d.Value>@d.Text</option>
+                    }
+                </select>
+                <span class="help-block">Ctrl+click for multiselect</span>
             </div>
         </div>
         <div class="form-group">
             <label for="inputStudio" class="col-lg-2 control-label">Studio</label>
             <div class="col-lg-10">
-                @Html.DropDownList("Studio", Model.Studios, "(select)", new { @class = "form-control", @id = "inputStudio" })
+                @Html.DropDownList("StudioID", Model.Studios, "(select)", new { @class = "form-control", @id = "inputStudio" })
             </div>
         </div>
         <div class="form-group">
             <label for="inputActors" class="col-lg-2 control-label">Actors</label>
             <div class="col-lg-10">
-                <select multiple="" class="form-control" id="inputActors" name="Actors">
+                <select multiple="" class="form-control" id="inputActors" name="ActorID">
                     @foreach (var a in Model.Actors)
                     {
                         <option value=@a.Value>@a.Text</option>
@@ -55,7 +73,7 @@
         <div class="form-group">
             <label for="inputOwnerRating" class="col-lg-2 control-label">Owner Rating</label>
             <div class="col-lg-10">
-                @Html.DropDownList("OwnerRating", Model.Ratings, "(select)", new { @class = "form-control", @id = "inputOwnerRating" })
+                @Html.DropDownList("OwnerRatingID", Model.Ratings, "(select)", new { @class = "form-control", @id = "inputOwnerRating" })
             </div>
         </div>
         <div class="form-group">

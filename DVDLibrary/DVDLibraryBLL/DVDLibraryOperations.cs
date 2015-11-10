@@ -47,9 +47,24 @@ namespace DVDLibraryBLL
             return _repo.GetRatings();
         }
 
-        public void AddMovie()
+        public void AddMovie(AddMovieCarrier amc)
         {
-            
+            int id = _repo.AddMovieToDB(amc.Title, amc.DateReleased, int.Parse(amc.RunTime), amc.Synopsis, amc.ImageURL,
+                int.Parse(amc.GenreID), int.Parse(amc.OwnerRatingID), int.Parse(amc.MPAARatingID),
+                int.Parse(amc.StudioID));
+
+            foreach (var director in amc.DirectorID)
+            {
+                _repo.AddMovieDirectorToDB(id, int.Parse(director));
+            }
+            foreach (var actor in amc.ActorID)
+            {
+                _repo.AddMovieDirectorToDB(id, int.Parse(actor));
+            }
+            for (int i = 0; i < int.Parse(amc.Copies); i++)
+            {
+                _repo.AddMovieToInventoryDB(id, 0);
+            }
         }
     }
 }
