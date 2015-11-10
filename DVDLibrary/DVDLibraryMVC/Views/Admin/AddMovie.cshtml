@@ -12,13 +12,25 @@
         <div class="form-group">
             <label for="inputReleaseDate" class="col-lg-2 control-label">Releases Date</label>
             <div class="col-lg-10">
-                <input type="date" class="form-control" id="inputReleaseDate" name="ReleaseDate">
+                <input type="date" class="form-control" id="inputReleaseDate" name="DateReleased">
             </div>
         </div>
         <div class="form-group">
             <label for="inputMPAARating" class="col-lg-2 control-label">MPAA Rating</label>
             <div class="col-lg-10">
-                @Html.DropDownList("MPAARatingID", Model.MPAARatings, "(select)", new { @class = "form-control", @id = "inputMPAARating" })
+                @Html.DropDownList("MPAARatingID", Model.MPAARatings, "(select)", new {@class = "form-control", @id = "inputMPAARating"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputGenre" class="col-lg-2 control-label">Genre</label>
+            <div class="col-lg-10">
+                @Html.DropDownList("GenreID", Model.Genres, "(select)", new {@class = "form-control", @id = "inputGenre"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputRuntime" class="col-lg-2 control-label">Runtime</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputRuntTime" placeholder="Minutes" name="RunTime">
             </div>
         </div>
         <div class="form-group">
@@ -61,7 +73,7 @@
         <div class="form-group">
             <label for="inputOwnerRating" class="col-lg-2 control-label">Owner Rating</label>
             <div class="col-lg-10">
-                @Html.DropDownList("OwnerRating", Model.Ratings, "(select)", new { @class = "form-control", @id = "inputOwnerRating" })
+                @Html.DropDownList("OwnerRatingID", Model.Ratings, "(select)", new { @class = "form-control", @id = "inputOwnerRating" })
             </div>
         </div>
         <div class="form-group">

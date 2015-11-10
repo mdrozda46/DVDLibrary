@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DVDLibraryBLL;
+using DVDLibraryModels;
 using DVDLibraryMVC.Models;
 
 namespace DVDLibraryMVC.Controllers
@@ -32,8 +33,10 @@ namespace DVDLibraryMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult MovieToRepo()
+        public ActionResult MovieToRepo(AddMovieCarrier newMovie)
         {
+            
+        
             return RedirectToAction("Index");
         }
 
