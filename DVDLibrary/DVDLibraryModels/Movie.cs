@@ -14,7 +14,7 @@ namespace DVDLibraryModels
         public string MPAARating { get; set; }
         public string Director { get; set; }
         public string Studio { get; set; }
-        public List<Rating> Ratings { get; set; } 
+        public List<int> Ratings { get; set; } 
         public List<Note> Notes { get; set; } 
         public List<string> Actors { get; set; }
         public DateTime ReleaseDate { get; set; }
