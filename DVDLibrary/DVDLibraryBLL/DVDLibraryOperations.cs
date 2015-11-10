@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DVDLibraryModels
+namespace DVDLibraryBLL
 {
-    public class Rating
+    class DVDLibraryOperations
     {
-        public int RatingID { get; set; }
-        public int Stars { get; set; }
     }
 }
