@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActorModel.cs" />
+    <Compile Include="AddMovieCarrier.cs" />
     <Compile Include="Borrower.cs" />
     <Compile Include="DirectorModel.cs" />
     <Compile Include="GenreModel.cs" />

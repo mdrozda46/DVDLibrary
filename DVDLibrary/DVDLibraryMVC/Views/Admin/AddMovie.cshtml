@@ -18,25 +18,31 @@
         <div class="form-group">
             <label for="inputMPAARating" class="col-lg-2 control-label">MPAA Rating</label>
             <div class="col-lg-10">
-                @Html.DropDownList("MPAARating", Model.MPAARatings, "(select)", new { @class = "form-control", @id = "inputMPAARating" })
+                @Html.DropDownList("MPAARatingID", Model.MPAARatings, "(select)", new { @class = "form-control", @id = "inputMPAARating" })
             </div>
         </div>
         <div class="form-group">
-            <label for="inputDirector" class="col-lg-2 control-label">Directed By</label>
+            <label for="inputDirectors" class="col-lg-2 control-label">Directed By</label>
             <div class="col-lg-10">
-                @Html.DropDownList("Director", Model.Directors, "(select)", new { @class = "form-control", @id = "inputDirector" })
+                <select multiple="" class="form-control" id="inputDirectors" name="DirectorID">
+                    @foreach (var d in Model.Directors)
+                    {
+                        <option value=@d.Value>@d.Text</option>
+                    }
+                </select>
+                <span class="help-block">Ctrl+click for multiselect</span>
             </div>
         </div>
         <div class="form-group">
             <label for="inputStudio" class="col-lg-2 control-label">Studio</label>
             <div class="col-lg-10">
-                @Html.DropDownList("Studio", Model.Studios, "(select)", new { @class = "form-control", @id = "inputStudio" })
+                @Html.DropDownList("StudioID", Model.Studios, "(select)", new { @class = "form-control", @id = "inputStudio" })
             </div>
         </div>
         <div class="form-group">
             <label for="inputActors" class="col-lg-2 control-label">Actors</label>
             <div class="col-lg-10">
-                <select multiple="" class="form-control" id="inputActors" name="Actors">
+                <select multiple="" class="form-control" id="inputActors" name="ActorID">
                     @foreach (var a in Model.Actors)
                     {
                         <option value=@a.Value>@a.Text</option>
