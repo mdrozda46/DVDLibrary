@@ -90,8 +90,45 @@ namespace DVDLibraryData.Repository
 
                 cn.Execute("AddMovie", p, commandType: CommandType.StoredProcedure);
 
+                //TODO do something with this variable
                 int movieId = p.Get<int>("MovieID");
             }
-        } 
+        }
+
+        public void AddMovieActorToDB(int movieId, int actorId)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("MovieID", movieId);
+                p.Add("ActorID", actorId);
+
+                cn.Execute("AddMovieActor", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void AddMovieDirectorToDB(int movieId, int directorId)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("MovieID", movieId);
+                p.Add("DirectorID", directorId);
+
+                cn.Execute("AddMovieDirector", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void AddMovieToInventoryDB(int movieId, bool outForRent)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("MovieID", movieId);
+                p.Add("OutForRent", outForRent);
+
+                cn.Execute("AddMovieToInventory", p, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
