@@ -103,7 +103,6 @@
     <Content Include="Web.config" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Admin\AddMovie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -128,6 +127,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Admin\AddMovie.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -146,6 +146,10 @@
     <ProjectReference Include="..\DVDLibraryData\DVDLibraryData.csproj">
       <Project>{6b3a5de4-d0e5-48ef-8563-c9e1fbd25fa6}</Project>
       <Name>DVDLibraryData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVDLibraryModels\DVDLibraryModels.csproj">
+      <Project>{f515bafa-857f-43b2-bc08-84906c9e7af4}</Project>
+      <Name>DVDLibraryModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

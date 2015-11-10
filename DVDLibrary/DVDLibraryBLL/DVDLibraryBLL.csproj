@@ -40,12 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DVDLibraryOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DVDLibraryData\DVDLibraryData.csproj">
       <Project>{6b3a5de4-d0e5-48ef-8563-c9e1fbd25fa6}</Project>
       <Name>DVDLibraryData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DVDLibraryModels\DVDLibraryModels.csproj">
+      <Project>{F515BAFA-857F-43B2-BC08-84906C9E7AF4}</Project>
+      <Name>DVDLibraryModels</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
