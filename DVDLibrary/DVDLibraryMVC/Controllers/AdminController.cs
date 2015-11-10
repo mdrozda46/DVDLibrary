@@ -19,6 +19,12 @@ namespace DVDLibraryMVC.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult MovieToRepo()
+        {
+            return RedirectToAction("Index");
+        }
+
         public ActionResult ViewCollection()
         {
             return View();

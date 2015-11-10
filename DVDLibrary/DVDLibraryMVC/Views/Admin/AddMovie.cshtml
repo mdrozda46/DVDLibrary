@@ -1,47 +1,74 @@
-﻿<form class="form-horizontal">
+﻿<form class="form-horizontal" action="/Admin/MovieToRepo" method="POST">
     <fieldset>
         <legend>Add Movie</legend>
         <div class="form-group">
             <label for="inputMovieTitle" class="col-lg-2 control-label">Movie Title</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputMovieTitle" placeholder="Movie Title">
+                <input type="text" class="form-control" id="inputMovieTitle" placeholder="Movie Title" name="Title">
             </div>
         </div>
         <div class="form-group">
             <label for="inputReleaseDate" class="col-lg-2 control-label">Releases Date</label>
             <div class="col-lg-10">
-                <input type="date" class="form-control" id="inputPassword">
+                <input type="date" class="form-control" id="inputReleaseDate" name="ReleaseDate">
             </div>
         </div>
         <div class="form-group">
             <label for="inputMPAARating" class="col-lg-2 control-label">MPAA Rating</label>
             <div class="col-lg-10">
-                @*@Html.DropDownList("ID", Model.DegreeDropDown, "(select)", new {@class = "form-control", @id = "inputMPAARating"})*@
+                @*@Html.DropDownList("MPAARating", Model.DegreeDropDown, "(select)", new {@class = "form-control", @id = "inputMPAARating"})*@
             </div>
         </div>
         <div class="form-group">
             <label for="inputDirector" class="col-lg-2 control-label">Directed By</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputDirector" placeholder="Director">
+                @*@Html.DropDownList("Director", Model.DegreeDropDown, "(select)", new {@class = "form-control", @id = "inputDirector"})*@
             </div>
         </div>
         <div class="form-group">
             <label for="inputStudio" class="col-lg-2 control-label">Studio</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputStudio" placeholder="Studio Name">
+                @*@Html.DropDownList("Studio", Model.DegreeDropDown, "(select)", new {@class = "form-control", @id = "inputStudio"})*@
             </div>
         </div>
         <div class="form-group">
             <label for="inputActors" class="col-lg-2 control-label">Actors</label>
             <div class="col-lg-10">
-                @*@Html.DropDownList("Actor", Model.DegreeDropDown, "(select)", new {@class = "form-control", @id = "inputActors"})*@
+                <select multiple="" class="form-control" id="inputActors" name="Actors">
+                    @*@foreach (var m in Model.Actors)
+                    {
+                        <option value=m.Value>m.Text</option>
+                    }*@
+                    <option value="hi">John Walker</option>
+                    <option value="bye">Matt Damon</option>
+                    <option value="byebye">Emma Watson</option>
+                </select>
+                <span class="help-block">Ctrl+click for multiselect</span>
             </div>
         </div>
         <div class="form-group">
             <label for="inputSynopsis" class="col-lg-2 control-label">Synopsis</label>
             <div class="col-lg-10">
-                <textarea class="form-control" rows="3" id="inputSynopsis" maxlength="2000"></textarea>
-                <span class="help-block">Character Limit: 2000.</span>
+                <textarea class="form-control" rows="3" id="inputSynopsis" maxlength="2000" name="Synopsis"></textarea>
+                <span class="help-block">Character limit: 2000</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputOwnerRating" class="col-lg-2 control-label">Owner Rating</label>
+            <div class="col-lg-10">
+                @*@Html.DropDownList("OwnerRating", Model.OwnerRatingDropDown, "(select)", new {@class = "form-control", @id = "inputOwnerRating"})*@
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputNumberOfCopies" class="col-lg-2 control-label">Copies</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputNumberOfCopies" placeholder="# of copies" name="Copies">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputImageURL" class="col-lg-2 control-label">Image</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputImageURL" placeholder="Image URL" name="ImageURL">
             </div>
         </div>
         <div class="form-group">
