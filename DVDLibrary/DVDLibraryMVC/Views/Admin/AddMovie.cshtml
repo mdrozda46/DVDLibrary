@@ -1,0 +1,54 @@
+﻿<form class="form-horizontal">
+    <fieldset>
+        <legend>Add Movie</legend>
+        <div class="form-group">
+            <label for="inputMovieTitle" class="col-lg-2 control-label">Movie Title</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputMovieTitle" placeholder="Movie Title">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputReleaseDate" class="col-lg-2 control-label">Releases Date</label>
+            <div class="col-lg-10">
+                <input type="date" class="form-control" id="inputPassword">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputMPAARating" class="col-lg-2 control-label">MPAA Rating</label>
+            <div class="col-lg-10">
+                @*@Html.DropDownList("ID", Model.DegreeDropDown, "(select)", new {@class = "form-control", @id = "inputMPAARating"})*@
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputDirector" class="col-lg-2 control-label">Directed By</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputDirector" placeholder="Director">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputStudio" class="col-lg-2 control-label">Studio</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputStudio" placeholder="Studio Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputActors" class="col-lg-2 control-label">Actors</label>
+            <div class="col-lg-10">
+                @*@Html.DropDownList("Actor", Model.DegreeDropDown, "(select)", new {@class = "form-control", @id = "inputActors"})*@
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputSynopsis" class="col-lg-2 control-label">Synopsis</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" rows="3" id="inputSynopsis" maxlength="2000"></textarea>
+                <span class="help-block">Character Limit: 2000.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
