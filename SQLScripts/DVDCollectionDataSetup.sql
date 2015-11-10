@@ -39,6 +39,17 @@ INSERT INTO dbo.Ratings (Rating)
 	 (1), (2), (3), (4), (5) 
 
 GO
+CREATE TABLE dbo.Genres(
+	GenreID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+		Genre varchar(30) NOT NULL
+	)
+
+GO
+INSERT INTO dbo.Genres (Genre)
+	VALUES 
+	 ('Action'), ('Adventure'), ('Animation'), ('Comedy'), ('Documentary'), ('Drama'), ('Horror'), ('Sci-Fi'), ('Western') 
+
+GO
 CREATE TABLE dbo.Studios(
 	StudioID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	Name varchar(50) NOT NULL
@@ -69,9 +80,18 @@ GO
 CREATE TABLE dbo.Movies(
 	MovieID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	Title varchar(30) NOT NULL,
-	DateReleased Date NOT NULL,
+	DateReleased DateTime NOT NULL,
+	RunTime int,
+	Synopsis text,
+	ImageURL text, 
+	GenreID int
+	CONSTRAINT FK_GenreID FOREIGN KEY (GenreID) 
+		REFERENCES dbo.Genres (GenreID),
+	OwnerRatingID int
+	CONSTRAINT FK_OwnerRatingID FOREIGN KEY (OwnerRatingID) 
+		REFERENCES dbo.Ratings (RatingID),
 	MPAARatingID int
-	CONSTRAINT FK_RatingID FOREIGN KEY (MPAARatingID) 
+	CONSTRAINT FK_MPAARatingID FOREIGN KEY (MPAARatingID) 
 		REFERENCES dbo.MPAARatings (MPAARatingID),
 	StudioID int
 	CONSTRAINT FK_StudioID FOREIGN KEY (StudioID) 
@@ -81,7 +101,7 @@ CREATE TABLE dbo.Movies(
 GO
 CREATE TABLE dbo.MovieRatings(
 	MovieRatingID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	DateRated Date NOT NULL,
+	DateRated DateTime NOT NULL,
 	RatingID int,
 	CONSTRAINT FK_RatingID2 FOREIGN KEY (RatingID) 
 		REFERENCES dbo.Ratings (RatingID),
@@ -118,12 +138,22 @@ GO
 CREATE TABLE dbo.Notes(
 	NoteID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	NoteDescription varchar(500) NOT NULL,
-	DateOfNote Date NOT NULL,
+	DateOfNote DateTime NOT NULL,
 	UserID int
 	CONSTRAINT FK_UserID2 FOREIGN KEY (UserID) 
 		REFERENCES dbo.Users (UserID),
 	MovieID int
 	CONSTRAINT FK_MovieID3 FOREIGN KEY (MovieID) 
+		REFERENCES dbo.Movies (MovieID)
+)
+
+GO
+CREATE TABLE dbo.OwnerNotes(
+	OwnerNoteID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	NoteDescription varchar(500) NOT NULL,
+	DateOfNote DateTime NOT NULL,
+	MovieID int
+	CONSTRAINT FK_MovieID6 FOREIGN KEY (MovieID) 
 		REFERENCES dbo.Movies (MovieID)
 )
 
@@ -139,8 +169,8 @@ CREATE TABLE dbo.Inventory(
 GO
 CREATE TABLE dbo.RentalHistory(
 	RentalID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	DateBorrowed Date NOT NULL,
-	DateReturned Date,
+	DateBorrowed DateTime NOT NULL,
+	DateReturned DateTime,
 	UserID int
 	CONSTRAINT FK_UserID3 FOREIGN KEY (UserID) 
 		REFERENCES dbo.Users (UserID),
@@ -193,11 +223,11 @@ INSERT INTO Actors (FirstName, LastName)
 	('Zoe', 'Saldana'),
 	('Sigourney', 'Weaver');
 
-INSERT INTO Movies (Title, DateReleased, MPAARatingID, StudioID)
+INSERT INTO Movies (Title, DateReleased, RunTime, Synopsis, ImageURL, GenreID, OwnerRatingID, MPAARatingID, StudioID)
 	VALUES
-	('Pulp Fiction', '10/14/1994', '4', '3'),
-	('Avatar', '12/18/2009', '3', '1'),
-	('Star Wars', '5/25/1977', '2', '1');
+	('Pulp Fiction', '10/14/1994', '154', 'The lives of two mob hit men, a boxer, a gangsters wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', 'http://ia.media-imdb.com/images/M/MV5BMTkxMTA5OTAzMl5BMl5BanBnXkFtZTgwNjA5MDc3NjE@._V1_SX214_AL_.jpg', '6', '5', '4', '3'),
+	('Avatar', '12/18/2009', '162', 'A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.', 'http://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SY317_CR0,0,214,317_AL_.jpg', '1', '4', '3', '1'),
+	('Star Wars', '5/25/1977', '121', 'Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a wookiee and two droids to save the universe from the Empires world-destroying battle-station, while also attempting to rescue Princess Leia from the evil Darth Vader.', 'http://ia.media-imdb.com/images/M/MV5BMTU4NTczODkwM15BMl5BanBnXkFtZTcwMzEyMTIyMw@@._V1_SX214_AL_.jpg', '1', '5', '2', '1');
 
 INSERT INTO MovieCast (ActorID, MovieID)
 	VALUES
@@ -250,6 +280,12 @@ INSERT INTO Notes (NoteDescription, DateOfNote, UserID, MovieID)
 	('Terrible, do not waste your money.', '11/02/2015', '2', '2'),
 	('My favorite movie of all time!', '09/01/2015', '3', '3'),
 	('Best movie ever!', '08/01/2015', '4', '2');
+
+INSERT INTO OwnerNotes (NoteDescription, DateOfNote, MovieID)
+	VALUES
+	('One of my favorite movies!', '01/01/2012', '1'),
+	('The visual effects are so awesome!', '02/02/2013', '2'),
+	('Classic. Must see!', '03/04/2000', '3');
 
 INSERT INTO RentalHistory (DateBorrowed, DateReturned, UserID, SerialNumberID)
 	VALUES
