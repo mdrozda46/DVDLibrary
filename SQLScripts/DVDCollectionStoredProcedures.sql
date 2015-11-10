@@ -1,3 +1,6 @@
+USE DVDCollection
+GO
+
 CREATE PROCEDURE AddMovie 
 (
 	@Title varchar(30), 
@@ -43,3 +46,69 @@ BEGIN
 END 
 
 GO 
+
+CREATE PROCEDURE AddMovieDirector
+(
+	@MovieID int,
+	@DirectorID int
+)
+AS
+
+BEGIN
+	INSERT INTO dbo.MovieDirectors
+	(
+		MovieID,
+		DirectorID
+	)
+	VALUES
+	(
+		@MovieID,
+		@DirectorID
+	)
+END
+
+GO
+
+CREATE PROCEDURE AddMovieActor
+(
+	@MovieID int,
+	@ActorID int
+)
+AS
+
+BEGIN
+	INSERT INTO dbo.MovieCast
+	(
+		MovieID,
+		ActorID
+	)
+	VALUES
+	(
+		@MovieID,
+		@ActorID
+	)
+END
+
+GO
+
+CREATE PROCEDURE AddMovieToInventory
+(
+	@MovieID int,
+	@OutForRent bit
+)
+AS
+
+BEGIN
+	INSERT INTO dbo.Inventory
+	(
+		MovieID,
+		OutForRent
+	)
+	VALUES
+	(
+		@MovieID,
+		@OutForRent
+	)
+END
+
+GO
