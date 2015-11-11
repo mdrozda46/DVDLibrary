@@ -17,7 +17,8 @@ namespace DVDLibraryData.Repository
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
-                var MPAARatings = cn.Query<MPAARatingModel>("select mp.MPAARatingID, mp.MPAARating from MPAARatings mp").ToList();
+                var MPAARatings =
+                    cn.Query<MPAARatingModel>("select mp.MPAARatingID, mp.MPAARating from MPAARatings mp").ToList();
 
                 return MPAARatings;
             }
@@ -37,7 +38,8 @@ namespace DVDLibraryData.Repository
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
-                var Directors = cn.Query<DirectorModel>("select d.DirectorID, d.FirstName, d.LastName from Directors d").ToList();
+                var Directors =
+                    cn.Query<DirectorModel>("select d.DirectorID, d.FirstName, d.LastName from Directors d").ToList();
 
                 return Directors;
             }
@@ -73,7 +75,8 @@ namespace DVDLibraryData.Repository
             }
         }
 
-        public int AddMovieToDB(string title, DateTime dateReleased, int runTime, string synopsis, string imageUrl, int genreId, int ownerRatingId, int MPAARatingId, int studioId)
+        public int AddMovieToDB(string title, DateTime dateReleased, int runTime, string synopsis, string imageUrl,
+            int genreId, int ownerRatingId, int MPAARatingId, int studioId)
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
@@ -91,7 +94,6 @@ namespace DVDLibraryData.Repository
 
                 cn.Execute("AddMovie", p, commandType: CommandType.StoredProcedure);
 
-                //TODO do something with this variable
                 int movieId = p.Get<int>("MovieID");
                 return movieId;
             }
@@ -130,6 +132,19 @@ namespace DVDLibraryData.Repository
                 p.Add("OutForRent", outForRent);
 
                 cn.Execute("AddMovieToInventory", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public List<Movie> GetMovieListFromDBShortDetail()
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+
+                List<Movie> movieList = new List<Movie>();
+
+                movieList = cn.Query<Movie>("GetMovieList", commandType: CommandType.StoredProcedure).ToList();
+
+                return movieList;
             }
         }
     }
