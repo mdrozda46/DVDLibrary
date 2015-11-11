@@ -135,14 +135,14 @@ namespace DVDLibraryData.Repository
             }
         }
 
-        public List<Movie> GetMovieListFromDBShortDetail()
+        public List<MovieCollectionCarrier> GetMovieListFromDBShortDetail()
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
 
-                List<Movie> movieList = new List<Movie>();
+                List<MovieCollectionCarrier> movieList = new List<MovieCollectionCarrier>();
 
-                movieList = cn.Query<Movie>("GetMovieList", commandType: CommandType.StoredProcedure).ToList();
+                movieList = cn.Query<MovieCollectionCarrier>("GetMovieList", commandType: CommandType.StoredProcedure).ToList();
 
                 return movieList;
             }

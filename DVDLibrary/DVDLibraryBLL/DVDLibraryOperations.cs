@@ -67,7 +67,7 @@ namespace DVDLibraryBLL
             }
         }
 
-        public List<Movie> GetMovieListShortDetail()
+        public List<MovieCollectionCarrier> GetMovieListShortDetail()
         {
             var moviedata = _repo.GetMovieListFromDBShortDetail();
             return moviedata;

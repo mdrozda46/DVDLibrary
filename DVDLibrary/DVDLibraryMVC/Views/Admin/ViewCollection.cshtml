@@ -1,0 +1,60 @@
+﻿@model DVDLibraryMVC.Models.MovieCollectionViewModel
+
+@{
+    ViewBag.Title = "ViewCollection";
+}
+
+<h2>ViewCollection</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            MPAA Rating
+        </th>
+        <th>
+            Genre
+        </th>
+        <th>
+            Runtime
+        </th>
+        <th>
+            User Rating
+        </th>
+        <th>
+            Units in Stock
+        </th>
+    </tr>
+
+@foreach (var item in Model.Movies) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MPAARating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RunTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitsInStock)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
+        </td>
+        <td>@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |</td>
+        <td>@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })</td>
+    </tr>
+}
+
+</table>

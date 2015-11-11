@@ -43,7 +43,13 @@ namespace DVDLibraryMVC.Controllers
 
         public ActionResult ViewCollection()
         {
-            return View();
+            var ops = new DVDLibraryOperations();
+            var movies = ops.GetMovieListShortDetail();
+
+            var collectionVM = new MovieCollectionViewModel();
+            collectionVM.Movies = movies; 
+        
+            return View(collectionVM);
         }
 
         public ActionResult RentalHistory()

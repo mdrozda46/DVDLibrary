@@ -10,9 +10,8 @@ namespace DVDLibraryModels
     {
         public List<int> SerialNumbers { get; set; } 
         public string Title { get; set; }
-        public string Description { get; set; }
         public string MPAARating { get; set; }
-        public string Director { get; set; }
+        public List<DirectorModel> Directors { get; set; }
         public string Studio { get; set; }
         public List<int> Ratings { get; set; } 
         public List<Note> Notes { get; set; } 

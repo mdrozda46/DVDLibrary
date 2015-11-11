@@ -95,4 +95,9 @@ namespace DVDLibraryMVC.Models
             }
         }
     }
+
+    public class MovieCollectionViewModel
+    {
+        public List<MovieCollectionCarrier> Movies { get; set; }  
+    }
 }
