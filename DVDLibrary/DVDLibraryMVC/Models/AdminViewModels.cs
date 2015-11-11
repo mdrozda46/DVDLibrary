@@ -98,6 +98,11 @@ namespace DVDLibraryMVC.Models
 
     public class MovieCollectionViewModel
     {
-        public List<MovieCollectionCarrier> Movies { get; set; }  
+        public List<MovieCollectionCarrier> Movies { get; set; }
+
+        public MovieCollectionViewModel(List<MovieCollectionCarrier> Movies)
+        {
+            this.Movies = Movies;
+        }
     }
 }

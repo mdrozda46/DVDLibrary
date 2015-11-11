@@ -46,9 +46,8 @@ namespace DVDLibraryMVC.Controllers
             var ops = new DVDLibraryOperations();
             var movies = ops.GetMovieListShortDetail();
 
-            var collectionVM = new MovieCollectionViewModel();
-            collectionVM.Movies = movies; 
-        
+            var collectionVM = new MovieCollectionViewModel(movies);
+            
             return View(collectionVM);
         }
 
