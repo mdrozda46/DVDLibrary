@@ -212,13 +212,16 @@ GO
 create procedure GetMovieList
 as
 begin
-	select distinct m.Title, mp.MPAARating, g.Genre, m.RunTime,
+select distinct m.MovieID, m.Title, mp.MPAARating, g.Genre, m.RunTime, d.FirstName as [DirectorFirstName], d.LastName as [DirectorLastName], s.Name,
 	  (select count(*) from Inventory i where i.MovieID = m.MovieID and i.OutForRent = 0) as UnitsInStock, 
 	  (select avg(mr.RatingID) from MovieRatings mr where mr.MovieID = m.MovieID) as UserRating
 	    from Movies m	
 	inner join MPAARatings mp on m.MPAARatingID = mp.MPAARatingID
 	inner join Genres g	on m.GenreID = g.GenreID
 	inner join Inventory i on m.MovieID = i.MovieID
+	inner join MovieDirectors md on m.MovieID = md.MovieID
+	inner join Directors d on d.DirectorID = md.DirectorID
+	inner join Studios s on s.StudioID = m.StudioID
 	where i.Active = 1
 end
 go
