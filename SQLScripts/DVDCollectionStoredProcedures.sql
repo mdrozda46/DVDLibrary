@@ -212,11 +212,27 @@ GO
 create procedure GetMovieList
 as
 begin
-	select m.Title, mp.MPAARating, g.Genre, m.RunTime,
+	select distinct m.Title, mp.MPAARating, g.Genre, m.RunTime,
 	  (select count(*) from Inventory i where i.MovieID = m.MovieID and i.OutForRent = 0) as UnitsInStock, 
 	  (select avg(mr.RatingID) from MovieRatings mr where mr.MovieID = m.MovieID) as UserRating
 	    from Movies m	
 	inner join MPAARatings mp on m.MPAARatingID = mp.MPAARatingID
 	inner join Genres g	on m.GenreID = g.GenreID
+	inner join Inventory i on m.MovieID = i.MovieID
+	where i.Active = 1
+end
+go
+
+create procedure DeleteMovie
+(
+	@MovieID int
+)
+as
+begin
+update Inventory
+set Active = 0
+from Inventory i
+	inner join Movies m on m.MovieID = i.MovieID
+where m.MovieID = @MovieID
 end
 go
