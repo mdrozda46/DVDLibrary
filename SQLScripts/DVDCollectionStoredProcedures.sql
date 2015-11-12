@@ -220,3 +220,18 @@ begin
 	inner join Genres g	on m.GenreID = g.GenreID
 end
 go
+
+--delete a movie from the database (removing all serialnumbers of movie) based on MovieID
+create procedure DeleteMovie
+(
+	@MovieID int
+)
+as
+begin
+update Inventory
+set Active = 0
+from Inventory i
+	inner join Movies m on m.MovieID = i.MovieID
+where m.MovieID = @MovieID
+end
+go
