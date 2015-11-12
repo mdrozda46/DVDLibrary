@@ -22,5 +22,16 @@ namespace DVDLibraryTests
             Assert.AreEqual(MPAARatings[0].MPAARating, "G");
 
         }
+
+        [Test]
+        public void GetOwnerNotesTest()
+        {
+            var repo = new DVDLibraryADO();
+            var note = repo.GetOwnerNoteByMovieId(2);
+
+            Assert.AreEqual(note.NoteDescription, "The visual effects are so awesome!");
+            Assert.AreEqual(note.OwnerNoteID, 2);
+
+        }
     }
 }

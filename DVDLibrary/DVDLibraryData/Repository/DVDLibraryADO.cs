@@ -142,9 +142,31 @@ namespace DVDLibraryData.Repository
 
                 List<MovieCollectionCarrier> movieList = new List<MovieCollectionCarrier>();
 
-                movieList = cn.Query<MovieCollectionCarrier>("GetMovieList", commandType: CommandType.StoredProcedure).ToList();
+                movieList =
+                    cn.Query<MovieCollectionCarrier>("GetMovieList", commandType: CommandType.StoredProcedure).ToList();
 
                 return movieList;
+            }
+        }
+
+        public void DeleteMovieFromDB(int movieId)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("MovieID", movieId);
+
+                cn.Execute("DeleteMovie", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public OwnerNote GetOwnerNoteByMovieId(int Id)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                return cn.Query<OwnerNote>(
+                    "select OwnerNoteID, NoteDescription, DateOfNote from Movies m inner join OwnerNotes n on m.MovieID = n.MovieID where m.MovieID = @movieId",
+                    new {movieId = Id}).FirstOrDefault();
             }
         }
     }
