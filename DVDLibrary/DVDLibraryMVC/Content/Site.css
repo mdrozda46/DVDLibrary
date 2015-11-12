@@ -1,15 +1,23 @@
 ﻿body {
-    color: white;
-    padding-top: 50px;
-    padding-bottom: 20px;
-    background-color:#C1DEE8;
-    background-image: 
-    radial-gradient(circle at 100% 150%, #C1DEE8 24%, white 25%, white 28%, #C1DEE8 29%, #C1DEE8 36%, white 36%, white 40%, transparent 40%, transparent),
-    radial-gradient(circle at 0    150%, #C1DEE8 24%, white 25%, white 28%, #C1DEE8 29%, #C1DEE8 36%, white 36%, white 40%, transparent 40%, transparent),
-    radial-gradient(circle at 50%  100%, white 10%, #C1DEE8 11%, #C1DEE8 23%, white 24%, white 30%, #C1DEE8 31%, #C1DEE8 43%, white 44%, white 50%, #C1DEE8 51%, #C1DEE8 63%, white 64%, white 71%, transparent 71%, transparent),
-    radial-gradient(circle at 100% 50%, white 5%, #C1DEE8 6%, #C1DEE8 15%, white 16%, white 20%, #C1DEE8 21%, #C1DEE8 30%, white 31%, white 35%, #C1DEE8 36%, #C1DEE8 45%, white 46%, white 49%, transparent 50%, transparent),
-    radial-gradient(circle at 0    50%, white 5%, #C1DEE8 6%, #C1DEE8 15%, white 16%, white 20%, #C1DEE8 21%, #C1DEE8 30%, white 31%, white 35%, #C1DEE8 36%, #C1DEE8 45%, white 46%, white 49%, transparent 50%, transparent);
-    background-size:100px 50px;
+    background:
+    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+    background-color: #131313 !important;
+    background-size: 20px 20px;
+    color: ivory !important;
+    /*background-color: #bdccdb !important;*/
+}
+
+legend {
+    color: ivory !important;
+}
+
+footer {
+    color: ivory;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -28,7 +36,7 @@ textarea {
 /*Styling for Director checkbox container*/
 .directorbox {
     border:2px solid #ccc; 
-    width:300px; 
+    width: 280px; 
     height: 165px; 
     overflow-y: scroll;
     background-color: white;
@@ -37,8 +45,8 @@ textarea {
 }
 
 .form-horizontal {
-    background-color: white;
-    background-color: rgba(255,255,255,0.5); 
+    background-color: #2c3e50; /*fallback color, leave*/
+    background-color: rgba(44,62,80,0.5); 
     display: block;
     margin-left: 2px;
     margin-right: 2px;
@@ -48,9 +56,38 @@ textarea {
     padding-right: 0.75em;
     border-style: groove;
     border-color: lightblue;
+    color: black;
+}
+
+.form-horizontal.label {
+    color: ivory !important;
 }
 
 .form-control:focus {
     border-color: aqua;
     outline: 0;
 }
+
+/*Home Index*/
+.filmscreen {
+    min-height: 100%;
+    background: radial-gradient(transparent, black);
+    background-color: beige;
+    position:fixed !important;
+    position:absolute;
+    top:10%;
+    right:15%;
+    left:15%;
+    border: 10px ridge #1d1d1d;
+}
+
+h1.indexheader {
+    color: black;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 050%)
+}
+/*Index End*/

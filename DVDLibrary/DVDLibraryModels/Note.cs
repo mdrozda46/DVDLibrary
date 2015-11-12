@@ -9,7 +9,9 @@ namespace DVDLibraryModels
     public class Note
     {
         public int NoteID { get; set; }
-        public DateTime TimeAdded { get; set; }
-        public string Content { get; set; }
+        public DateTime DateOfNote { get; set; }
+        public string NoteDescription { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

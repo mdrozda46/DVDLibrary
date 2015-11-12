@@ -169,5 +169,48 @@ namespace DVDLibraryData.Repository
                     new {movieId = Id}).FirstOrDefault();
             }
         }
+
+        public List<ActorModel> GetActorListByMovieID(int Id)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                List<ActorModel> actorList = new List<ActorModel>();
+
+                actorList =
+                    cn.Query<ActorModel>("SELECT mc.ActorID, a.FirstName, a.LastName " +
+                                         "FROM MovieCast mc inner join Actors a on mc.ActorID = a.ActorID " +
+                                         "WHERE mc.MovieID = @MovieID", new {movieID = Id}).ToList();
+
+                return actorList;
+            }
+        }
+
+        public List<DirectorModel> GetDirectorListByMovieID(int Id)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                List<DirectorModel> directorList = new List<DirectorModel>();
+
+                directorList = cn.Query<DirectorModel>("SELECT md.DirectorID, d.FirstName, d.LastName " +
+                                         "FROM MovieDirectors md inner join Directors d on md.DirectorID = d.DirectorID " +
+                                         "WHERE MovieID = @MovieID", new { movieID = Id }).ToList();
+
+                return directorList;
+            }
+        }
+
+        public List<Note> GetUserNotesByMovieID(int Id)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                List<Note> notes = new List<Note>();
+
+                notes = cn.Query<Note>("SELECT n.NoteID, n.NoteDescription, n.DateOfNote, u.FirstName, u.LastName " +
+                                       "FROM Notes n inner join Users u on n.UserID = u.UserID " +
+                                       "WHERE n.MovieID = @MovieID", new {movieID = Id}).ToList();
+
+                return notes; 
+            }
+        }
     }
 }
