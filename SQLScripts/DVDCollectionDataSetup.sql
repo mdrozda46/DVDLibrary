@@ -161,6 +161,7 @@ GO
 CREATE TABLE dbo.Inventory(
 	SerialNumberID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	OutForRent bit NOT NULL,
+	Active bit NOT NULL, 
 	MovieID int
 	CONSTRAINT FK_MovieID5 FOREIGN KEY (MovieID) 
 		REFERENCES dbo.Movies (MovieID)
@@ -216,7 +217,7 @@ INSERT INTO Actors (FirstName, LastName)
 	VALUES	
 	('Harrison', 'Ford'),
 	('Mark', 'Hamill'),
-	('Samuuel', 'Jackson'),
+	('Samuel', 'Jackson'),
 	('Bruce', 'Willis'),
 	('John', 'Travolta'),
 	('Sam', 'Worthington'),
@@ -246,19 +247,19 @@ INSERT INTO MovieDirectors(DirectorID, MovieID)
 	('4', '2'),
 	('1', '3');
 
-INSERT INTO Inventory(OutForRent, MovieID)
+INSERT INTO Inventory(OutForRent, Active, MovieID)
 	VALUES
-	('0', '1'),
-	('0', '1'),
-	('1', '1'),
-	('0', '2'),
-	('0', '2'),
-	('0', '2'),
-	('1', '3'),
-	('1', '3'),
-	('1', '3'),
-	('1', '3'),
-	('1', '3');
+	('0', '1', '1'),
+	('0', '1', '1'),
+	('1', '1', '1'),
+	('0', '1', '2'),
+	('0', '1', '2'),
+	('0', '1', '2'),
+	('1', '1', '3'),
+	('1', '1', '3'),
+	('1', '1', '3'),
+	('1', '1', '3'),
+	('1', '1', '3');
 
 INSERT INTO MovieRatings(DateRated, RatingID, MovieID, UserID)
 	VALUES

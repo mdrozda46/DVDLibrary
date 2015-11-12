@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace DVDLibraryModels
 {
-    public class Note
+    public class OwnerNote
     {
-        public int NoteID { get; set; }
+        public int OwnerNoteID { get; set; }
         public DateTime DateOfNote { get; set; }
         public string NoteDescription { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
     }
 }
