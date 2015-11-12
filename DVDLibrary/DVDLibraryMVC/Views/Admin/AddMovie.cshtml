@@ -18,33 +18,36 @@
         <div class="form-group">
             <label for="inputMPAARating" class="col-lg-2 control-label">MPAA Rating</label>
             <div class="col-lg-10">
-                @Html.DropDownList("MPAARatingID", Model.MPAARatings, "(select)", new {@class = "form-control", @id = "inputMPAARating"})
+                @Html.DropDownList("MPAARatingID", Model.MPAARatings, "(select)", new { @class = "form-control", @id = "inputMPAARating" })
             </div>
         </div>
         <div class="form-group">
             <label for="inputGenre" class="col-lg-2 control-label">Genre</label>
             <div class="col-lg-10">
-                @Html.DropDownList("GenreID", Model.Genres, "(select)", new {@class = "form-control", @id = "inputGenre"})
+                @Html.DropDownList("GenreID", Model.Genres, "(select)", new { @class = "form-control", @id = "inputGenre" })
             </div>
         </div>
         <div class="form-group">
             <label for="inputRuntime" class="col-lg-2 control-label">Runtime</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputRuntTime" placeholder="Minutes" name="RunTime">
+                <input type="text" class="form-control" id="inputRuntime" placeholder="Minutes" name="RunTime">
             </div>
         </div>
+
+        @**@
         <div class="form-group">
             <label for="inputDirectors" class="col-lg-2 control-label">Directed By</label>
-            <div class="col-lg-10">
-                <select multiple="" class="form-control" id="inputDirectors" name="DirectorID">
-                    @foreach (var d in Model.Directors)
-                    {
-                        <option value=@d.Value>@d.Text</option>
-                    }
-                </select>
-                <span class="help-block">Ctrl+click for multiselect</span>
+            <div class="directorbox ">
+                @*<select multiple="" id="inputDirectors" name="DirectorID">*@
+                @foreach (var d in Model.Directors)
+                {
+                    <p><input type="checkbox" value=@d.Value name="DirectorID" />@d.Text</p>
+                }
+                @*</select>*@
+                @*<span class="help-block">Ctrl+click for multiselect</span>*@
             </div>
         </div>
+
         <div class="form-group">
             <label for="inputStudio" class="col-lg-2 control-label">Studio</label>
             <div class="col-lg-10">
@@ -96,3 +99,7 @@
         </div>
     </fieldset>
 </form>
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/script.js"></script>
+}

@@ -7,6 +7,15 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    @*For paramquery*@
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/redmond/jquery-ui.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="~/Scripts/pqselect.dev.css" />
+    
+
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -46,6 +55,7 @@
 
     <div class="container body-content">
         @RenderBody()
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - !Null</p>
@@ -53,6 +63,9 @@
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/pqselect.dev.js"></script>
+    @RenderSection("scripts", false);
+
 </body>
 </html>

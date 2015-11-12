@@ -1,6 +1,15 @@
 ﻿body {
+    color: white;
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color:#C1DEE8;
+    background-image: 
+    radial-gradient(circle at 100% 150%, #C1DEE8 24%, white 25%, white 28%, #C1DEE8 29%, #C1DEE8 36%, white 36%, white 40%, transparent 40%, transparent),
+    radial-gradient(circle at 0    150%, #C1DEE8 24%, white 25%, white 28%, #C1DEE8 29%, #C1DEE8 36%, white 36%, white 40%, transparent 40%, transparent),
+    radial-gradient(circle at 50%  100%, white 10%, #C1DEE8 11%, #C1DEE8 23%, white 24%, white 30%, #C1DEE8 31%, #C1DEE8 43%, white 44%, white 50%, #C1DEE8 51%, #C1DEE8 63%, white 64%, white 71%, transparent 71%, transparent),
+    radial-gradient(circle at 100% 50%, white 5%, #C1DEE8 6%, #C1DEE8 15%, white 16%, white 20%, #C1DEE8 21%, #C1DEE8 30%, white 31%, white 35%, #C1DEE8 36%, #C1DEE8 45%, white 46%, white 49%, transparent 50%, transparent),
+    radial-gradient(circle at 0    50%, white 5%, #C1DEE8 6%, #C1DEE8 15%, white 16%, white 20%, #C1DEE8 21%, #C1DEE8 30%, white 31%, white 35%, #C1DEE8 36%, #C1DEE8 45%, white 46%, white 49%, transparent 50%, transparent);
+    background-size:100px 50px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -16,3 +25,32 @@ textarea {
     max-width: 280px;
 }
 
+/*Styling for Director checkbox container*/
+.directorbox {
+    border:2px solid #ccc; 
+    width:300px; 
+    height: 165px; 
+    overflow-y: scroll;
+    background-color: white;
+    padding-top: 3px;
+    margin-left: 20px;
+}
+
+.form-horizontal {
+    background-color: white;
+    background-color: rgba(255,255,255,0.5); 
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border-style: groove;
+    border-color: lightblue;
+}
+
+.form-control:focus {
+    border-color: aqua;
+    outline: 0;
+}

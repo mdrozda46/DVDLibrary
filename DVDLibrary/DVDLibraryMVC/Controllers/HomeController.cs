@@ -13,5 +13,10 @@ namespace DVDLibraryMVC.Controllers
         {
             return View();
         }
+
+        public ActionResult DVDsForRent()
+        {
+            return View();
+        }
     }
 }
