@@ -219,8 +219,20 @@ begin
 	inner join MPAARatings mp on m.MPAARatingID = mp.MPAARatingID
 	inner join Genres g	on m.GenreID = g.GenreID
 	inner join Inventory i on m.MovieID = i.MovieID
-	where i.active = 1
+	where i.Active = 1
 end
 go
 
-
+create procedure DeleteMovie
+(
+	@MovieID int
+)
+as
+begin
+update Inventory
+set Active = 0
+from Inventory i
+	inner join Movies m on m.MovieID = i.MovieID
+where m.MovieID = @MovieID
+end
+go
