@@ -51,6 +51,13 @@ namespace DVDLibraryMVC.Controllers
             return View(collectionVM);
         }
 
+        public ActionResult ViewDVD()
+        {
+            // retrieve specific DVD
+
+            return View();
+        }
+
         public ActionResult RentalHistory()
         {
             return View();
