@@ -29,8 +29,8 @@
             <td>@(String.Format("{0}h {1}m", m.RunTime/60, m.RunTime%60))</td>
             <td>@m.UserRating</td>
             <td>@m.UnitsInStock</td>
-            <td><a href="#">View</a></td>
-            <td><a href="#">Delete</a></td>
+            <td><a href="/Admin/ViewDVD?MovieID=@m.MovieID">View</a></td>
+            <td><a href="/Admin/DeleteDVD?MovieID=@m.MovieID">Delete</a></td>
         </tr>
     }
     </tbody>

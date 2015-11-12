@@ -212,5 +212,34 @@ namespace DVDLibraryData.Repository
                 return notes; 
             }
         }
+
+        public ViewMovieCarrier GetMovieDetails(int Id)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+
+                ViewMovieCarrier movie = new ViewMovieCarrier();
+                var p = new DynamicParameters();
+                p.Add("MovieID", Id);
+
+                movie =
+                    cn.Query<ViewMovieCarrier>("GetMovieByID", p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+                movie.Synopsis =
+                    cn.Query<string>("SELECT m.Synopsis FROM Movies m WHERE m.MovieID = @MovieID", new {MovieID = Id})
+                        .FirstOrDefault();
+
+
+                movie.ImageURL =
+                    cn.Query<string>("SELECT m.ImageURL FROM Movies m WHERE m.MovieID = @MovieID", new {MovieID = Id})
+                        .FirstOrDefault();
+
+                movie.Director = GetDirectorListByMovieID(Id);
+
+                movie.Actor = GetActorListByMovieID(Id);
+
+                return movie;
+            }
+        }
     }
 }

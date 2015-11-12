@@ -1,11 +1,12 @@
-﻿
+﻿@using System.Activities.Statements
+@model DVDLibraryMVC.Models.ViewMovieViewModel
 
 <div class="row">
     <div class="col-md-2">
-        <img src="http://sim03.in.com/62/bb6280caeda6f653c266599b00ecccae_pt_xl.jpg" width="150">
+        <img src="@Model.movie.ImageURL" width="150">
     </div>
     <div class="col-md-8">
-        <h3>The Rock</h3>
+        <h2>@Model.movie.Title</h2>
     </div>
 </div>
 <br/>
@@ -15,7 +16,7 @@
         <b>Release Date</b>
     </div>
     <div class="col-md-6">
-        July 11, 1999
+        @Model.movie.DateReleased.ToShortDateString()
     </div>
 </div>
 <br />
@@ -24,7 +25,7 @@
         <b>MPAA Rating</b>
     </div>
     <div class="col-md-6">
-        R
+        @Model.movie.MPAARating
     </div>
 </div>
 <br />
@@ -33,7 +34,7 @@
         <b>Genre</b>
     </div>
     <div class="col-md-6">
-        Action
+        @Model.movie.Genre
     </div>
 </div>
 <br />
@@ -42,7 +43,7 @@
         <b>Runtime</b>
     </div>
     <div class="col-md-6">
-        1h 50m
+        @String.Format("{0}h {1}m", @Model.movie.RunTime/60, @Model.movie.RunTime%60)
     </div>
 </div>
 <br />
@@ -51,7 +52,11 @@
         <b>Director</b>
     </div>
     <div class="col-md-6">
-        James Franco
+        @foreach (var d in Model.movie.Director)
+        {
+            @String.Format("{0} {1}", d.FirstName, d.LastName);
+            <br/>
+        }
     </div>
 </div>
 <br />
@@ -60,7 +65,7 @@
         <b>Studio</b>
     </div>
     <div class="col-md-6">
-        Holllywood Studios
+        @Model.movie.Studio
     </div>
 </div>
 <br />
@@ -69,9 +74,11 @@
         <b>Cast</b>
     </div>
     <div class="col-md-6">
-        Natalie Portman<br/>
-        Emma Watson<br/>
-        Jessica Chastain
+        @foreach (var a in Model.movie.Actor)
+        {
+            @String.Format("{0} {1}", a.FirstName, a.LastName)
+            <br/>
+        }
     </div>
 </div>
 <br />
@@ -80,7 +87,7 @@
         <b>Synopsis</b>
     </div>
     <div class="col-md-6">
-        Stanley Goodspeed, who lives in Washington D.C., is a biochemist who works for the FBI. Soon after his fiancée Carla Pestalozzi announces that she is pregnant, Stanley gets a call from FBI director James Womack. Womack tells Stanley that San Francisco's Alcatraz Island has been taken hostage, along with 81 tourists, by marine General Francis Xavier Hummel who, for years, has been protesting the government's refusal to pay benefits to families of war veterans who died during covert military operations.
+       @Model.movie.Synopsis
     </div>
 </div>
 <br />
@@ -89,7 +96,7 @@
         <b>Owner Rating</b>
     </div>
     <div class="col-md-6">
-        5 stars
+        @Model.movie.OwnerRating
     </div>
 </div>
 <br />
@@ -98,14 +105,14 @@
         <b>Copies</b>
     </div>
     <div class="col-md-6">
-        10
+        @Model.movie.UnitsInStock
     </div>
 </div>
 <br/>
 <div class="row">
     <div class="col-md-2">
-        <a href="#" class="btn btn-default">Edit</a>
-        <a href="#" class="btn btn-default">Return</a>
+        <a href="/Admin/DeleteDVD?MovieID=@Model.movie.MovieID" class="btn btn-default">Edit</a>
+        <a href="/Admin/ViewCollection" class="btn btn-default">Return</a>
     </div>
 </div>
 

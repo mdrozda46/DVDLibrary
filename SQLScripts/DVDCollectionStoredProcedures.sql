@@ -226,6 +226,25 @@ select distinct m.MovieID, m.Title, mp.MPAARating, g.Genre, m.RunTime, d.FirstNa
 end
 go
 
+create procedure GetMovieByID 
+(
+	@MovieID int
+)
+as
+begin
+select distinct m.MovieID, m.Title, m.DateReleased, mp.MPAARating, g.Genre, m.RunTime, s.Name as Studio,
+	  (select count(*) from Inventory i where i.MovieID = m.MovieID and i.OutForRent = 0) as UnitsInStock, 
+	  (select avg(mr.RatingID) from MovieRatings mr where mr.MovieID = m.MovieID) as UserRating,
+	  (select r.Rating from Ratings r where m.OwnerRatingID = r.RatingID) as OwnerRating
+	    from Movies m	
+	inner join MPAARatings mp on m.MPAARatingID = mp.MPAARatingID
+	inner join Genres g	on m.GenreID = g.GenreID
+	inner join Inventory i on m.MovieID = i.MovieID	
+	inner join Studios s on s.StudioID = m.StudioID
+	where i.Active = 1 AND m.MovieID = @MovieID
+end
+go
+
 create procedure DeleteMovie
 (
 	@MovieID int

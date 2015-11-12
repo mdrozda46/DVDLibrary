@@ -105,4 +105,14 @@ namespace DVDLibraryMVC.Models
             this.Movies = Movies;
         }
     }
+
+    public class ViewMovieViewModel
+    {
+        public ViewMovieCarrier movie { get; set; }
+
+        public ViewMovieViewModel(ViewMovieCarrier movie)
+        {
+            this.movie = movie;
+        }
+    }
 }
