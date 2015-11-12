@@ -217,7 +217,7 @@ INSERT INTO Actors (FirstName, LastName)
 	VALUES	
 	('Harrison', 'Ford'),
 	('Mark', 'Hamill'),
-	('Samuuel', 'Jackson'),
+	('Samuel', 'Jackson'),
 	('Bruce', 'Willis'),
 	('John', 'Travolta'),
 	('Sam', 'Worthington'),
