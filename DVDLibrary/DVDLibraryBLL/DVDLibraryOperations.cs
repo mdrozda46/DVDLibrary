@@ -66,5 +66,11 @@ namespace DVDLibraryBLL
                 _repo.AddMovieToInventoryDB(id, 0);
             }
         }
+
+        public List<MovieCollectionCarrier> GetMovieListShortDetail()
+        {
+            var moviedata = _repo.GetMovieListFromDBShortDetail();
+            return moviedata;
+        } 
     }
 }
