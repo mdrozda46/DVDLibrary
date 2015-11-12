@@ -8,6 +8,7 @@ namespace DVDLibraryModels
 {
     public class MovieCollectionCarrier
     {
+        public int MovieID { get; set; }
         public string Title { get; set; }
         public string MPAARating { get; set; }
         public string Genre { get; set; }
