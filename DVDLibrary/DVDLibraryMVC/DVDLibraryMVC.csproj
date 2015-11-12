@@ -105,10 +105,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\pqselect.bootstrap.dev.css" />
-    <Content Include="Scripts\pqselect.dev.css" />
-    <Content Include="Scripts\pqselect.dev.js" />
-    <Content Include="Scripts\script.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
