@@ -268,5 +268,18 @@ namespace DVDLibraryData.Repository
                 return users;
             }
         }
+
+        public List<MovieRental> GetUserOutForRent(int userID)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("UserID", userID);
+
+                var rentals = cn.Query<MovieRental>("GetUserOutForRent", p, commandType: CommandType.StoredProcedure).ToList();
+
+                return rentals; 
+            }
+        }
     }
 }

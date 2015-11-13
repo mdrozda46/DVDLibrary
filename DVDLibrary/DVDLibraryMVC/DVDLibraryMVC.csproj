@@ -92,7 +92,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Controllers\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app\AddDVDValidation.js" />
     <Content Include="Scripts\app\jquery-validate-defaults.js" />
@@ -132,9 +132,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Controllers\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Controllers\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Controllers\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Admin\AddMovie.cshtml" />
     <Content Include="Views\Admin\ViewCollection.cshtml" />
@@ -142,6 +142,8 @@
     <Content Include="Views\Admin\EditDVD.cshtml" />
     <Content Include="Views\Admin\RentalHistory.cshtml" />
     <Content Include="Views\User\SelectUserReturn.cshtml" />
+    <Content Include="Views\User\UserRentalList.cshtml" />
+    <Content Include="Views\User\ReturnMovie.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

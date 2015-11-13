@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DVDLibraryBLL;
+using DVDLibraryMVC.Models;
 
 namespace DVDLibraryMVC.Controllers
 {
@@ -20,11 +21,26 @@ namespace DVDLibraryMVC.Controllers
             return View();
         }
 
+        public ActionResult SelectUserReturn()
+        {
+            var ops = new DVDLibraryOperations();
+            var users = ops.GetUsers();
+            var usersVM = new SelectUserViewModel(users);
+
+            return View(usersVM);
+        }
+
         public ActionResult UserRentalList(int UserID)
         {
             var ops = new DVDLibraryOperations();
+
+            var userRentalsVM = new RentalListViewModel(ops.GetUserOutForRent(UserID));
             
-            
+            return View(userRentalsVM);
+        }
+
+        public ActionResult ReturnMovie(int RentalId)
+        {
             return View();
         }
     }

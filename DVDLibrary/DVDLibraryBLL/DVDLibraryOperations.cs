@@ -12,7 +12,7 @@ namespace DVDLibraryBLL
     {
         private DVDLibraryADO _repo;
 
-        public DVDLibraryOperations() 
+        public DVDLibraryOperations()
         {
             _repo = new DVDLibraryADO();
         }
@@ -97,6 +97,14 @@ namespace DVDLibraryBLL
             var users = _repo.GetUser();
 
             return users;
-        } 
+        }
+
+        public List<MovieRental> GetUserOutForRent(int userID)
+        {
+            var rentals = _repo.GetUserOutForRent(userID);
+
+            return rentals;
+
+        }
     }
 }

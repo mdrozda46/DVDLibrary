@@ -15,7 +15,7 @@ namespace DVDLibraryMVC.Models
         {
             this.Rentals = Rentals;
         }
-
+    }
 
     public class SelectUserViewModel
     {
@@ -37,6 +37,6 @@ namespace DVDLibraryMVC.Models
             }
 
             UsersDropDown = dropDown;
-        } 
+        }
     }
 }

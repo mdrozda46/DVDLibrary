@@ -13,32 +13,32 @@
     <button type="submit" class="btn btn-default">Search</button>
 </form>
 
-<table class="table table-responsive ">
+<table class="table table-striped table-hover">
     <thead>
-    <tr>
-        <th>#</th>
-        <th>Title</th>
-        <th>MPAA Rating</th>
-        <th>Genre</th>
-        <th>Runtime</th>
-        <th>User Rating</th>
-        <th>Units in Stock</th>
-    </tr>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>MPAA Rating</th>
+            <th>Genre</th>
+            <th>Runtime</th>
+            <th>User Rating</th>
+            <th>Units in Stock</th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var m in Model.Movies)
-    {
-        <tr>
-            <td>@(Model.Movies.IndexOf(m)+1)</td>
-            <td>@m.Title</td>
-            <td>@m.MPAARating</td>
-            <td>@m.Genre</td>
-            <td>@(String.Format("{0}h {1}m", m.RunTime/60, m.RunTime%60))</td>
-            <td>@m.UserRating</td>
-            <td>@m.UnitsInStock</td>
-            <td><a href="/Admin/ViewDVD?MovieID=@m.MovieID">View</a></td>
-            <td><a href="/Admin/DeleteDVD?MovieID=@m.MovieID">Delete</a></td>
-        </tr>
-    }
+        @foreach (var m in Model.Movies)
+        {
+            <tr>
+                <td>@(Model.Movies.IndexOf(m) + 1)</td>
+                <td>@m.Title</td>
+                <td>@m.MPAARating</td>
+                <td>@m.Genre</td>
+                <td>@(String.Format("{0}h {1}m", m.RunTime / 60, m.RunTime % 60))</td>
+                <td>@m.UserRating</td>
+                <td>@m.UnitsInStock</td>
+                <td><a href="/Admin/ViewDVD?MovieID=@m.MovieID">View</a></td>
+                <td><a href="/Admin/DeleteDVD?MovieID=@m.MovieID">Delete</a></td>
+            </tr>
+        }
     </tbody>
 </table> 
