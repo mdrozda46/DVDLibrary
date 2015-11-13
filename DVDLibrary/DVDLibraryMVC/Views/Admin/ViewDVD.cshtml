@@ -1,48 +1,122 @@
-﻿<img src="#" />
-<table>
-    <tr>
-        <td>Movie Title</td>
-        <td>The Rock</td>
-    </tr>
-    <tr>
-        <td>Release Date</td>
-        <td>July 11, 1999</td>
-    </tr>
-    <tr>
-        <td>MPAA Rating</td>
-        <td>R</td>
-    </tr>
-    <tr>
-        <td>Genre</td>
-        <td>Action</td>
-    </tr>
-    <tr>
-        <td>Runtime</td>
-        <td>1h 50m</td>
-    </tr>
-    <tr>
-        <td>Directed By</td>
-        <td>James Franco</td>
-    </tr>
-    <tr>
-        <td>Studio</td>
-        <td>Warner Bros</td>
-    </tr>
-    <tr>
-        <td>Actors</td>
-        <td>Nicholas Cage<br/>Sean Connery</td>
-    </tr>
-    <tr>
-        <td>Synopsis</td>
-        <td>Stanley Goodspeed, who lives in Washington D.C., is a biochemist who works for the FBI. Soon after his fiancée Carla Pestalozzi announces that she is pregnant, Stanley gets a call from FBI director James Womack. Womack tells Stanley that San Francisco's Alcatraz Island has been taken hostage, along with 81 tourists, by marine General Francis Xavier Hummel who, for years, has been protesting the government's refusal to pay benefits to families of war veterans who died during covert military operations.</td>
-    </tr>
-    <tr>
-        <td>Owner Rating</td>
-        <td>5 stars</td>
-    </tr>
-    <tr>
-        <td>Copies</td>
-        <td>3</td>
-    </tr>
-</table>
+﻿@using System.Activities.Statements
+@model DVDLibraryMVC.Models.ViewMovieViewModel
+
+<div class="row">
+    <div class="col-md-2">
+        <img src="@Model.movie.ImageURL" width="150">
+    </div>
+    <div class="col-md-8">
+        <h2>@Model.movie.Title</h2>
+    </div>
+</div>
+<br/>
+
+<div class="row">
+    <div class="col-md-2">
+        <b>Release Date</b>
+    </div>
+    <div class="col-md-6">
+        @Model.movie.DateReleased.ToShortDateString()
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>MPAA Rating</b>
+    </div>
+    <div class="col-md-6">
+        @Model.movie.MPAARating
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Genre</b>
+    </div>
+    <div class="col-md-6">
+        @Model.movie.Genre
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Runtime</b>
+    </div>
+    <div class="col-md-6">
+        @String.Format("{0}h {1}m", @Model.movie.RunTime/60, @Model.movie.RunTime%60)
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Director</b>
+    </div>
+    <div class="col-md-6">
+        @foreach (var d in Model.movie.Director)
+        {
+            @String.Format("{0} {1}", d.FirstName, d.LastName);
+            <br/>
+        }
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Studio</b>
+    </div>
+    <div class="col-md-6">
+        @Model.movie.Studio
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Cast</b>
+    </div>
+    <div class="col-md-6">
+        @foreach (var a in Model.movie.Actor)
+        {
+            @String.Format("{0} {1}", a.FirstName, a.LastName)
+            <br/>
+        }
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Synopsis</b>
+    </div>
+    <div class="col-md-6">
+       @Model.movie.Synopsis
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Owner Rating</b>
+    </div>
+    <div class="col-md-6">
+        @Model.movie.OwnerRating
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Copies</b>
+    </div>
+    <div class="col-md-6">
+        @Model.movie.UnitsInStock
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-2">
+        <a href="/Admin/DeleteDVD?MovieID=@Model.movie.MovieID" class="btn btn-default">Edit</a>
+        <a href="/Admin/ViewCollection" class="btn btn-default">Return</a>
+    </div>
+</div>
+
+
+
+
 

@@ -71,6 +71,18 @@ namespace DVDLibraryBLL
         {
             var moviedata = _repo.GetMovieListFromDBShortDetail();
             return moviedata;
-        } 
+        }
+
+        public void DeleteMovie(int movieId)
+        {
+            _repo.DeleteMovieFromDB(movieId);
+        }
+
+        public ViewMovieCarrier GetMovieDetails(int Id)
+        {
+            ViewMovieCarrier movie = _repo.GetMovieDetails(Id);
+
+            return movie;
+        }
     }
 }

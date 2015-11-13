@@ -11,6 +11,11 @@ namespace DVDLibraryMVC.Controllers
 {
     public class AdminController : Controller
     {
+        private Stack<int> _deleted { get; set; }
+        public AdminController()
+        {
+            _deleted = new Stack<int>();
+        }
         // GET: Admin
         public ActionResult Index()
         {
@@ -51,16 +56,35 @@ namespace DVDLibraryMVC.Controllers
             return View(collectionVM);
         }
 
-        public ActionResult ViewDVD()
+        public ActionResult ViewDVD(int MovieID)
         {
-            // retrieve specific DVD
+            var ops = new DVDLibraryOperations();
+            var movie = ops.GetMovieDetails(MovieID);
 
-            return View();
+            var dvdVM = new ViewMovieViewModel(movie);
+
+            return View(dvdVM);
         }
 
-        public ActionResult RentalHistory()
+        public ActionResult DeleteDvD(int MovieID)
         {
-            return View();
+            //possible undo implementation
+            //_deleted.Push(MovieID);
+            //Session["DeletedMovie"] = _deleted;
+            
+
+            var ops = new DVDLibraryOperations();
+            ops.DeleteMovie(MovieID);
+
+            return RedirectToAction("ViewCollection");
+        }
+
+        public ActionResult RentalHistory(int MovieID)
+        {
+            var ops = new DVDLibraryOperations();
+            ops.DeleteMovie(MovieID);
+
+            return RedirectToAction("ViewCollection");
         }
 
         public ActionResult EditDVD()
