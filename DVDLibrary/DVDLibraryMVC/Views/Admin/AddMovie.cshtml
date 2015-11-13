@@ -1,104 +1,107 @@
 ﻿@model DVDLibraryMVC.Models.AddMovieViewModel
 
-<form class="form-horizontal" action="/Admin/MovieToRepo" method="POST" id="AddDVDForm">
-    <fieldset>
-        <legend>Add Movie</legend>
-        <div class="form-group">
-            <label for="inputMovieTitle" class="col-lg-2 control-label">Movie Title</label>
-            <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputMovieTitle" placeholder="Movie Title" name="Title">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputReleaseDate" class="col-lg-2 control-label">Releases Date</label>
-            <div class="col-lg-10">
-                <input type="date" class="form-control" id="inputReleaseDate" name="DateReleased">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputMPAARating" class="col-lg-2 control-label">MPAA Rating</label>
-            <div class="col-lg-10">
-                @Html.DropDownList("MPAARatingID", Model.MPAARatings, "(select)", new { @class = "form-control", @id = "inputMPAARating" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputGenre" class="col-lg-2 control-label">Genre</label>
-            <div class="col-lg-10">
-                @Html.DropDownList("GenreID", Model.Genres, "(select)", new { @class = "form-control", @id = "inputGenre" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputRuntime" class="col-lg-2 control-label">Runtime</label>
-            <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputRuntime" placeholder="Minutes" name="RunTime">
-            </div>
-        </div>
+<div class="row">
 
-        @**@
-        <div class="form-group">
-            <label for="inputDirectors" class="dirlabel col-lg-2 control-label">Directed By</label>
-            <div class="directorbox col-lg-10 form-control">
-                @*<select multiple="" id="inputDirectors" name="DirectorID">*@
-                @foreach (var d in Model.Directors)
-                {
-                    <p><input type="checkbox" value=@d.Value name="DirectorID" />@d.Text</p>
-                }
-                @*</select>*@
-                @*<span class="help-block">Ctrl+click for multiselect</span>*@
+    <form class="form-horizontal" action="/Admin/MovieToRepo" method="POST" id="AddDVDForm">
+        <fieldset>
+            <legend>Add Movie</legend>
+            <div class="form-group">
+                <label for="inputMovieTitle" class="col-lg-2 control-label">Movie Title</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputMovieTitle" placeholder="Movie Title" name="Title">
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="inputReleaseDate" class="col-lg-2 control-label">Releases Date</label>
+                <div class="col-lg-10">
+                    <input type="date" class="form-control" id="inputReleaseDate" name="DateReleased">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputMPAARating" class="col-lg-2 control-label">MPAA Rating</label>
+                <div class="col-lg-10">
+                    @Html.DropDownList("MPAARatingID", Model.MPAARatings, "(select)", new { @class = "form-control", @id = "inputMPAARating" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputGenre" class="col-lg-2 control-label">Genre</label>
+                <div class="col-lg-10">
+                    @Html.DropDownList("GenreID", Model.Genres, "(select)", new { @class = "form-control", @id = "inputGenre" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputRuntime" class="col-lg-2 control-label">Runtime</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputRuntime" placeholder="Minutes" name="RunTime">
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label for="inputStudio" class="col-lg-2 control-label">Studio</label>
-            <div class="col-lg-10">
-                @Html.DropDownList("StudioID", Model.Studios, "(select)", new { @class = "form-control", @id = "inputStudio" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputActors" class="col-lg-2 control-label">Actors</label>
-            <div class="col-lg-10">
-                <select multiple="" class="form-control" id="inputActors" name="ActorID">
-                    @foreach (var a in Model.Actors)
+            @**@
+            <div class="form-group">
+                <label for="inputDirectors" class="dirlabel col-lg-2 control-label">Directed By</label>
+                <div class="directorbox col-lg-10 form-control">
+                    @*<select multiple="" id="inputDirectors" name="DirectorID">*@
+                    @foreach (var d in Model.Directors)
                     {
-                        <option value=@a.Value>@a.Text</option>
+                        <p><input type="checkbox" value=@d.Value name="DirectorID" />@d.Text</p>
                     }
-                </select>
-                <span class="help-block">Ctrl+click for multiselect</span>
+                    @*</select>*@
+                    @*<span class="help-block">Ctrl+click for multiselect</span>*@
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputSynopsis" class="col-lg-2 control-label">Synopsis</label>
-            <div class="col-lg-10">
-                <textarea class="form-control" rows="3" id="inputSynopsis" maxlength="2000" name="Synopsis"></textarea>
-                <span class="help-block">Character limit: 2000</span>
+
+            <div class="form-group">
+                <label for="inputStudio" class="col-lg-2 control-label">Studio</label>
+                <div class="col-lg-10">
+                    @Html.DropDownList("StudioID", Model.Studios, "(select)", new { @class = "form-control", @id = "inputStudio" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputOwnerRating" class="col-lg-2 control-label">Owner Rating</label>
-            <div class="col-lg-10">
-                @Html.DropDownList("OwnerRatingID", Model.Ratings, "(select)", new { @class = "form-control", @id = "inputOwnerRating" })
+            <div class="form-group">
+                <label for="inputActors" class="col-lg-2 control-label">Actors</label>
+                <div class="col-lg-10">
+                    <select multiple="" class="form-control" id="inputActors" name="ActorID">
+                        @foreach (var a in Model.Actors)
+                        {
+                            <option value=@a.Value>@a.Text</option>
+                        }
+                    </select>
+                    <span class="help-block">Ctrl+click for multiselect</span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputNumberOfCopies" class="col-lg-2 control-label">Copies</label>
-            <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputNumberOfCopies" placeholder="# of copies" name="Copies">
+            <div class="form-group">
+                <label for="inputSynopsis" class="col-lg-2 control-label">Synopsis</label>
+                <div class="col-lg-10">
+                    <textarea class="form-control" rows="3" id="inputSynopsis" maxlength="2000" name="Synopsis"></textarea>
+                    <span class="help-block">Character limit: 2000</span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputImageURL" class="col-lg-2 control-label">Image</label>
-            <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputImageURL" placeholder="Image URL" name="ImageURL">
+            <div class="form-group">
+                <label for="inputOwnerRating" class="col-lg-2 control-label">Owner Rating</label>
+                <div class="col-lg-10">
+                    @Html.DropDownList("OwnerRatingID", Model.Ratings, "(select)", new { @class = "form-control", @id = "inputOwnerRating" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
-                <button type="reset" class="btn btn-default">Reset</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <label for="inputNumberOfCopies" class="col-lg-2 control-label">Copies</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputNumberOfCopies" placeholder="# of copies" name="Copies">
+                </div>
             </div>
-        </div>
-    </fieldset>
-</form>
+            <div class="form-group">
+                <label for="inputImageURL" class="col-lg-2 control-label">Image</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputImageURL" placeholder="Image URL" name="ImageURL">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="reset" class="btn btn-default">Reset</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
 
 @section Scripts
 {

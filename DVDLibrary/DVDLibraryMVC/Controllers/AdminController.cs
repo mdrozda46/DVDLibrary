@@ -79,17 +79,15 @@ namespace DVDLibraryMVC.Controllers
             return RedirectToAction("ViewCollection");
         }
 
-        public ActionResult RentalHistory(int MovieID)
+        public ActionResult RentalHistory()
         {
             var ops = new DVDLibraryOperations();
-            ops.DeleteMovie(MovieID);
 
-            return RedirectToAction("ViewCollection");
-        }
+            var rentalHistory = ops.GetRentalHistory();
 
-        public ActionResult EditDVD()
-        {
-            return View();
+            var rentalVM = new RentalHistoryViewModel(rentalHistory);
+
+            return View(rentalVM);
         }
 
         [HttpPost]
@@ -97,11 +95,11 @@ namespace DVDLibraryMVC.Controllers
         {
             var ops = new DVDLibraryOperations();
             var movies = ops.GetMovieListShortDetail();
-           // var filteredMovies = movies.FindAll(m => m.Title.ToLower() == MovieTitle.ToLower()).ToList();
 
             var filteredMovies = (from m in movies
                 where m.Title.ToLower().Contains(MovieTitle.ToLower())
                 select m).ToList();
+
             var collectionVM = new MovieCollectionViewModel(filteredMovies);
 
             return View(collectionVM);
