@@ -261,3 +261,16 @@ from Inventory i
 where m.MovieID = @MovieID
 end
 go
+
+-- GET RENTAL HISTORY STORED PROC
+CREATE PROCEDURE GetRentalHistory
+
+AS
+BEGIN
+	SELECT rh.RentalID, rh.DateBorrowed, rh.DateReturned, rh.SerialNumberID, m.Title, u.FirstName + ' ' + u.LastName as Name 
+	FROM RentalHistory rh
+	Left Join Inventory i ON rh.SerialNumberID = i.SerialNumberID
+	Inner Join Movies m ON i.MovieID = m.MovieID
+	Inner Join Users u ON rh.UserID = u.UserID
+END
+GO
