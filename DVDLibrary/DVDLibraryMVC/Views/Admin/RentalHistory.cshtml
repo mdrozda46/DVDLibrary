@@ -1,10 +1,11 @@
-﻿@model DVDLibraryMVC.Models.RentalHistoryViewModel
+﻿@using System.Diagnostics.Eventing.Reader
+@model DVDLibraryMVC.Models.RentalHistoryViewModel
 
 <div class="row">
     <h3>Rental History</h3>
 </div>
 <div class="row">
-    <table class="table table-striped table-hover">
+    <table class="table table-hover table-striped">
         <thead>
         <tr>
             <th>#</th>
@@ -23,8 +24,15 @@
                 <th>@h.Name</th>
                 <th>@h.Title</th>
                 <th>@h.SerialNumberID</th>
-                <th>@h.DateBorrowed</th>
-                <th>@h.DateReturned</th>
+                <th>@h.DateBorrowed.ToShortDateString()</th>
+                @if (h.DateReturned.ToString() == "1/1/0001 12:00:00 AM")
+                {
+                    <th></th>
+                }
+                else
+                {
+                    <th>@h.DateReturned.ToShortDateString()</th>
+                }
             </tr>
         }
         </tbody>
