@@ -96,7 +96,8 @@ GO
 CREATE PROCEDURE AddMovieToInventory
 (
 	@MovieID int,
-	@OutForRent bit
+	@OutForRent bit,
+	@Active bit
 )
 AS
 
@@ -104,12 +105,14 @@ BEGIN
 	INSERT INTO dbo.Inventory
 	(
 		MovieID,
-		OutForRent
+		OutForRent,
+		Active
 	)
 	VALUES
 	(
 		@MovieID,
-		@OutForRent
+		@OutForRent,
+		@Active
 	)
 END
 

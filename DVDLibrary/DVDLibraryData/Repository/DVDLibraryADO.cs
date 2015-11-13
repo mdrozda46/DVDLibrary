@@ -130,6 +130,7 @@ namespace DVDLibraryData.Repository
                 var p = new DynamicParameters();
                 p.Add("MovieID", movieId);
                 p.Add("OutForRent", outForRent);
+                p.Add("Active", 1);
 
                 cn.Execute("AddMovieToInventory", p, commandType: CommandType.StoredProcedure);
             }

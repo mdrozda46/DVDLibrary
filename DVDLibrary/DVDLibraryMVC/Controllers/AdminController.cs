@@ -85,5 +85,10 @@ namespace DVDLibraryMVC.Controllers
 
             return RedirectToAction("ViewCollection");
         }
+
+        public ActionResult EditDVD()
+        {
+            return View();
+        }
     }
 }
