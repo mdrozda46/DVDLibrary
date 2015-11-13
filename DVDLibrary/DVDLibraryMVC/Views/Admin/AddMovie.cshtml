@@ -1,6 +1,6 @@
 ﻿@model DVDLibraryMVC.Models.AddMovieViewModel
 
-<form class="form-horizontal" action="/Admin/MovieToRepo" method="POST">
+<form class="form-horizontal" action="/Admin/MovieToRepo" method="POST" id="AddDVDForm">
     <fieldset>
         <legend>Add Movie</legend>
         <div class="form-group">
@@ -36,8 +36,8 @@
 
         @**@
         <div class="form-group">
-            <label for="inputDirectors" class="col-lg-2 control-label">Directed By</label>
-            <div class="directorbox ">
+            <label for="inputDirectors" class="dirlabel col-lg-2 control-label">Directed By</label>
+            <div class="directorbox col-lg-10 form-control">
                 @*<select multiple="" id="inputDirectors" name="DirectorID">*@
                 @foreach (var d in Model.Directors)
                 {
@@ -93,13 +93,16 @@
         </div>
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
-                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="reset" class="btn btn-default">Reset</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </fieldset>
 </form>
 
-@*@section scripts{
-    To be used...
-}*@
+@section Scripts
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/app/jquery-validate-defaults.js"></script>
+    <script src="~/Scripts/app/AddDVDValidation.js"></script>
+}

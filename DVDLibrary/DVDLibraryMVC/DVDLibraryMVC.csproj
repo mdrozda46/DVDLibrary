@@ -94,6 +94,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\app\AddDVDValidation.js" />
+    <Content Include="Scripts\app\jquery-validate-defaults.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -137,6 +139,7 @@
     <Content Include="Views\Admin\AddMovie.cshtml" />
     <Content Include="Views\Admin\ViewCollection.cshtml" />
     <Content Include="Views\Admin\ViewDVD.cshtml" />
+    <Content Include="Views\Admin\EditDVD.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

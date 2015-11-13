@@ -62,5 +62,10 @@ namespace DVDLibraryMVC.Controllers
         {
             return View();
         }
+
+        public ActionResult EditDVD()
+        {
+            return View();
+        }
     }
 }
