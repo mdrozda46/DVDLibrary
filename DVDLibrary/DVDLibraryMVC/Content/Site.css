@@ -41,7 +41,12 @@ textarea {
     overflow-y: scroll;
     background-color: white;
     padding-top: 3px;
-    margin-left: 20px;
+    margin-left: 18px;
+
+}
+
+.dirlabel {
+    margin-right: -2px;
 }
 
 .form-horizontal {
@@ -73,21 +78,20 @@ textarea {
     min-height: 100%;
     background: radial-gradient(transparent, black);
     background-color: beige;
-    position:fixed !important;
-    position:absolute;
-    top:10%;
+    /*position:fixed !important;
+    position:absolute;*/
+    /*top:10%;
     right:15%;
-    left:15%;
+    left:15%;*/
     border: 10px ridge #1d1d1d;
+    height: 80%;
 }
 
-h1.indexheader {
+.jumbotron h1.indexheader {
     color: black;
     margin: 0;
-    position: absolute;
+    text-align: center;
     top: 50%;
     left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, 050%)
 }
 /*Index End*/

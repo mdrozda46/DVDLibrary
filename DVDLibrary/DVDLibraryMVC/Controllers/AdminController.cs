@@ -71,7 +71,6 @@ namespace DVDLibraryMVC.Controllers
             //possible undo implementation
             //_deleted.Push(MovieID);
             //Session["DeletedMovie"] = _deleted;
-            
 
             var ops = new DVDLibraryOperations();
             ops.DeleteMovie(MovieID);
@@ -85,6 +84,11 @@ namespace DVDLibraryMVC.Controllers
             ops.DeleteMovie(MovieID);
 
             return RedirectToAction("ViewCollection");
+        }
+
+        public ActionResult EditDVD()
+        {
+            return View();
         }
     }
 }
