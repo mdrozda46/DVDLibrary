@@ -242,5 +242,18 @@ namespace DVDLibraryData.Repository
                 return movie;
             }
         }
+
+        public List<RentalHistory> GetRentalHistory()
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                List<RentalHistory> rentalHistory = new List<RentalHistory>();
+
+                rentalHistory =
+                    cn.Query<RentalHistory>("GetRentalHistory", commandType: CommandType.StoredProcedure).ToList();
+
+                return rentalHistory;
+            }
+        } 
     }
 }

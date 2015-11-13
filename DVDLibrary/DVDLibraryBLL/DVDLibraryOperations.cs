@@ -84,5 +84,12 @@ namespace DVDLibraryBLL
 
             return movie;
         }
+
+        public List<RentalHistory> GetRentalHistory()
+        {
+            var rentalHistory = _repo.GetRentalHistory();
+
+            return rentalHistory;
+        } 
     }
 }

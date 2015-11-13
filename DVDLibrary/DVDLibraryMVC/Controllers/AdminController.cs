@@ -78,17 +78,21 @@ namespace DVDLibraryMVC.Controllers
             return RedirectToAction("ViewCollection");
         }
 
-        public ActionResult RentalHistory(int MovieID)
+        public ActionResult RentalHistory()
         {
             var ops = new DVDLibraryOperations();
-            ops.DeleteMovie(MovieID);
 
-            return RedirectToAction("ViewCollection");
+            var rentalHistory = ops.GetRentalHistory();
+
+            var rentalVM = new RentalHistoryViewModel(rentalHistory);
+
+            return View(rentalVM);
         }
 
-        public ActionResult EditDVD()
-        {
-            return View();
-        }
+        //public ActionResult EditDVD()
+        //{
+        //    return View();
+        //}
+        
     }
 }

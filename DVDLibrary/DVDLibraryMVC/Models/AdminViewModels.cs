@@ -115,4 +115,14 @@ namespace DVDLibraryMVC.Models
             this.movie = movie;
         }
     }
+
+    public class RentalHistoryViewModel
+    {
+        public List<RentalHistory> History { get; set; }
+
+        public RentalHistoryViewModel(List<RentalHistory> history)
+        {
+            this.History = history;
+        }
+    }
 }
