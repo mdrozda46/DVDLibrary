@@ -21,7 +21,7 @@
                 <td>@(Model.Rentals.IndexOf(m)+1)</td>
                 <td>@m.Title</td>
                 <td>@m.DateBorrowed.ToShortDateString()</td>
-                <td><a href="/User/ReturnMovie?RentalId=m.RentalID">Return Rental</a></td>
+                <td><a href="/User/ReturnMovie?RentalId=@m.RentalID">Return Rental</a></td>
             </tr>
         }
     </tbody>

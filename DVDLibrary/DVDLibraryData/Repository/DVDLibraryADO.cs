@@ -281,5 +281,17 @@ namespace DVDLibraryData.Repository
                 return rentals; 
             }
         }
+
+        public void ReturnMovieByRentalID(int rentalID)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("RentalID", rentalID);
+
+                cn.Execute("ReturnMovieByRentalID", p, commandType: CommandType.StoredProcedure);
+
+            }
+        }
     }
 }

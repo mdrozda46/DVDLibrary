@@ -106,5 +106,11 @@ namespace DVDLibraryBLL
             return rentals;
 
         }
+
+        public void ReturnMovieByRentalID(int rentalID)
+        {
+            _repo.ReturnMovieByRentalID(rentalID);
+        }
+        
     }
 }
