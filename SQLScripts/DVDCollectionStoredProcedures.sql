@@ -274,3 +274,40 @@ BEGIN
 	Inner Join Users u ON rh.UserID = u.UserID
 END
 GO
+
+-- GET USER MOVIES OUT FOR RENT
+
+CREATE PROCEDURE GetUserOutForRent
+(
+	@UserID int
+)
+
+AS
+BEGIN
+	Select rh.RentalID, m.Title, rh.DateBorrowed
+	FROM RentalHistory rh
+	left join Inventory i ON rh.SerialNumberID = i.SerialNumberID
+	inner join Movies m ON i.MovieID = m.MovieID 
+	WHERE rh.UserID = @UserID AND rh.DateReturned is NULL
+END
+GO
+
+-- RETURN MOVIE BY RENTAL ID
+CREATE PROCEDURE ReturnMovieByRentalID
+(
+	@RentalID int
+)
+
+AS
+BEGIN
+
+	UPDATe RentalHistory 
+	SET DateReturned = GETDATE()
+	WHERE RentalID = @RentalID
+
+	UPDATe Inventory
+	SET OutForRent = '0'
+	WHERE SerialNumberID = (Select  rh.SerialNumberID FROM RentalHistory rh WHERE rh.RentalID = @RentalID)
+
+END
+GO
