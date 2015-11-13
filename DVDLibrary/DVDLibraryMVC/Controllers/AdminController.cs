@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using DVDLibraryBLL;
@@ -89,10 +90,19 @@ namespace DVDLibraryMVC.Controllers
             return View(rentalVM);
         }
 
-        //public ActionResult EditDVD()
-        //{
-        //    return View();
-        //}
-        
+        [HttpPost]
+        public ActionResult ViewCollection(string MovieTitle)
+        {
+            var ops = new DVDLibraryOperations();
+            var movies = ops.GetMovieListShortDetail();
+
+            var filteredMovies = (from m in movies
+                where m.Title.ToLower().Contains(MovieTitle.ToLower())
+                select m).ToList();
+
+            var collectionVM = new MovieCollectionViewModel(filteredMovies);
+
+            return View(collectionVM);
+        }
     }
 }
