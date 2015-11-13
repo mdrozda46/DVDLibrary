@@ -7,25 +7,28 @@
             DateReleased: {
                 required: true
             },
-            MPAARatings: {
+            MPAARatingID: {
                 required: true
             },
-            Genres: {
+            GenreID: {
                 required: true
             },
             RunTime: {
                 required: true
             },
-            directorForm: {
+            DirectorID: {
                 required: true
             },
-            Studios: {
+            ActorID: {
+                required: true
+            },
+            StudioID: {
                 required: true
             },
             Synopsis: {
                 required: true
             },
-            Ratings: {
+            OwnerRatingID: {
                 required: true
             },
             Copies: {
