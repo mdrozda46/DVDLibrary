@@ -90,6 +90,13 @@ namespace DVDLibraryBLL
             var rentalHistory = _repo.GetRentalHistory();
 
             return rentalHistory;
+        }
+
+        public List<User> GetUsers()
+        {
+            var users = _repo.GetUser();
+
+            return users;
         } 
     }
 }

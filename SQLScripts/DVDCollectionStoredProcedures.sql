@@ -229,6 +229,7 @@ select distinct m.MovieID, m.Title, mp.MPAARating, g.Genre, m.RunTime, d.FirstNa
 end
 go
 
+--get movie by ID
 create procedure GetMovieByID 
 (
 	@MovieID int
@@ -248,6 +249,7 @@ select distinct m.MovieID, m.Title, m.DateReleased, mp.MPAARating, g.Genre, m.Ru
 end
 go
 
+--delete movie
 create procedure DeleteMovie
 (
 	@MovieID int
@@ -272,5 +274,15 @@ BEGIN
 	Left Join Inventory i ON rh.SerialNumberID = i.SerialNumberID
 	Inner Join Movies m ON i.MovieID = m.MovieID
 	Inner Join Users u ON rh.UserID = u.UserID
+END
+GO
+
+--GET USERS
+CREATE PROCEDURE GetUsers
+
+AS
+BEGIN
+	SELECT UserID, FirstName + ' ' + LastName as Name
+	FROM Users
 END
 GO

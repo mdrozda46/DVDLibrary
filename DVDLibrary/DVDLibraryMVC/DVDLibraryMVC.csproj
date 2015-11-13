@@ -141,6 +141,7 @@
     <Content Include="Views\Admin\ViewDVD.cshtml" />
     <Content Include="Views\Admin\EditDVD.cshtml" />
     <Content Include="Views\Admin\RentalHistory.cshtml" />
+    <Content Include="Views\User\SelectUserReturn.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

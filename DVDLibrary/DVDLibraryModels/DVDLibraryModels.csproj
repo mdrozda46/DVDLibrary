@@ -55,6 +55,7 @@
     <Compile Include="RatingModel.cs" />
     <Compile Include="RentalHistory.cs" />
     <Compile Include="Studio.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="ViewMovieCarrier.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
