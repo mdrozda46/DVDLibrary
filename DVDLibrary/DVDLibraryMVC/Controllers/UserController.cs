@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DVDLibraryBLL;
 
 namespace DVDLibraryMVC.Controllers
 {
@@ -16,6 +17,14 @@ namespace DVDLibraryMVC.Controllers
 
         public ActionResult ViewCollection()
         {
+            return View();
+        }
+
+        public ActionResult UserRentalList(int UserID)
+        {
+            var ops = new DVDLibraryOperations();
+            
+            
             return View();
         }
     }

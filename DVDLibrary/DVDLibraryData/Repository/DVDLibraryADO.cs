@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -254,6 +255,18 @@ namespace DVDLibraryData.Repository
 
                 return rentalHistory;
             }
-        } 
+        }
+
+        public List<User> GetUser()
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                List<User> users = new List<User>();
+
+                users = cn.Query<User>("GetUsers", commandType: CommandType.StoredProcedure).ToList();
+
+                return users;
+            }
+        }
     }
 }

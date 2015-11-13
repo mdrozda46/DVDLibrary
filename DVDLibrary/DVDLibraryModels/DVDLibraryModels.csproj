@@ -48,6 +48,7 @@
     <Compile Include="GenreModel.cs" />
     <Compile Include="Movie.cs" />
     <Compile Include="MovieCollectionCarrier.cs" />
+    <Compile Include="MovieRental.cs" />
     <Compile Include="MPAARatingModel.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="OwnerNote.cs" />

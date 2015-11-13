@@ -229,6 +229,7 @@ select distinct m.MovieID, m.Title, mp.MPAARating, g.Genre, m.RunTime, d.FirstNa
 end
 go
 
+--get movie by ID
 create procedure GetMovieByID 
 (
 	@MovieID int
@@ -248,6 +249,7 @@ select distinct m.MovieID, m.Title, m.DateReleased, mp.MPAARating, g.Genre, m.Ru
 end
 go
 
+--delete movie
 create procedure DeleteMovie
 (
 	@MovieID int
@@ -308,6 +310,16 @@ BEGIN
 	UPDATe Inventory
 	SET OutForRent = '0'
 	WHERE SerialNumberID = (Select  rh.SerialNumberID FROM RentalHistory rh WHERE rh.RentalID = @RentalID)
+END
+GO
+
+--GET USERS
+CREATE PROCEDURE GetUsers
+
+AS
+BEGIN
+	SELECT UserID, FirstName + ' ' + LastName as Name
+	FROM Users
 
 END
 GO

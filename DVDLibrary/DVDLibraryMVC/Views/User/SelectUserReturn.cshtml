@@ -1,0 +1,17 @@
+﻿@model DVDLibraryMVC.Models.SelectUserViewModel
+
+
+<div class="row">
+    <form class="form-horizontal" action="#" method="POST">
+        <fieldset>
+            <legend>Select User</legend>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="inputUser">Name</label>
+                <div class="col-lg-10">
+                    @Html.DropDownList("UserID", Model.UsersDropDown, "(select)", new {@class = "form-control", id = "inputUser"})
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </fieldset>
+    </form>
+</div>
