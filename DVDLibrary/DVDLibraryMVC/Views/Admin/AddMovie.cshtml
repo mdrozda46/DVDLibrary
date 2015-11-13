@@ -3,6 +3,9 @@
 <form class="form-horizontal" action="/Admin/MovieToRepo" method="POST" id="AddDVDForm">
     <fieldset>
         <legend>Add Movie</legend>
+
+        @Html.ValidationSummary()
+
         <div class="form-group">
             <label for="inputMovieTitle" class="col-lg-2 control-label">Movie Title</label>
             <div class="col-lg-10">
@@ -18,7 +21,7 @@
         <div class="form-group">
             <label for="inputMPAARating" class="col-lg-2 control-label">MPAA Rating</label>
             <div class="col-lg-10">
-                @Html.DropDownList("MPAARatingID", Model.MPAARatings, "(select)", new { @class = "form-control", @id = "inputMPAARating" })
+                @Html.DropDownList("MPAARatingID", Model.MPAARatings, "(select)", new { @class = "form-control", @id = "inputMPAARating", @name = "MPAARatings" })
             </div>
         </div>
         <div class="form-group">
