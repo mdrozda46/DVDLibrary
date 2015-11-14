@@ -32,7 +32,7 @@ namespace DVDLibraryMVC.Controllers
 
         public ActionResult UserRentalList(int UserID)
         {
-            TempData["userID"] = UserID;
+            Session["userID"] = UserID;
             var ops = new DVDLibraryOperations();
 
             var userRentalsVM = new RentalListViewModel(ops.GetUserOutForRent(UserID));
@@ -46,9 +46,10 @@ namespace DVDLibraryMVC.Controllers
 
             ops.ReturnMovieByRentalID(RentalId);
 
-            int UserID = (int) TempData["userID"];
+            int UserID = (int) Session["userID"];
+            var userRentalsVM = new RentalListViewModel(ops.GetUserOutForRent(UserID));
 
-            return RedirectToAction("UserRentalList", UserID);
+            return View("UserRentalList", userRentalsVM);
         }
     }
 }
