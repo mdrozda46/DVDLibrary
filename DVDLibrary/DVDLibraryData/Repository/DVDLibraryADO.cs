@@ -293,5 +293,23 @@ namespace DVDLibraryData.Repository
 
             }
         }
+
+        public User CreateUser(User user)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("FirstName", user.FirstName);
+                p.Add("LastName", user.LastName);
+                p.Add("UserID", DbType.Int32, direction: ParameterDirection.Output);
+
+                cn.Execute("AddUser", p, commandType: CommandType.StoredProcedure);
+
+                user.UserID = p.Get<int>("UserID");
+
+                return user;
+
+            } 
+        }
     }
 }

@@ -1,0 +1,27 @@
+﻿@model DVDLibraryMVC.Models.SelectUserViewModel
+
+
+<form class="form-horizontal test" action="/User/ViewCollection" method="GET">
+    <fieldset>
+        <legend>Returning User</legend>
+        <div class="form-group">
+            <div class="col-lg-10">
+                @Html.DropDownList("UserID", Model.UsersDropDown, "(select)", new {@class = "form-control input-sm", id = "inputUser"})
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </fieldset>
+</form>
+
+<form class="form-horizontal test" action="/User/CreateNewUser" method="POST">
+    <fieldset>
+        <legend>New User</legend>
+        <div class="form-group">
+            <div class="col-lg-10">
+                <input class="input-sm" type="text" placeholder="First Name" name="FirstName" />
+                <input class="input-sm" type="text" placeholder="Last Name" name="LastName" />
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </fieldset>
+</form>
