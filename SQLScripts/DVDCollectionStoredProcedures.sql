@@ -192,7 +192,8 @@ GO
 CREATE PROCEDURE AddUser
 (
 	@FirstName varchar(30),	
-	@LastName varchar(30)
+	@LastName varchar(30),
+	@UserID int output
 )
 AS
 
@@ -208,6 +209,7 @@ BEGIN
 		@FirstName,
 		@LastName
 	)
+	SET @UserID = SCOPE_IDENTITY();
 END
 GO
 

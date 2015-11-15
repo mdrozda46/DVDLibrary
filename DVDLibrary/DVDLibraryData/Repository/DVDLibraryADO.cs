@@ -293,8 +293,8 @@ namespace DVDLibraryData.Repository
 
             }
         }
-
-        //Created for Unit testing: Find total movies in DB.
+        
+        //Created for Unit testing: Find next Auto_increment for movieID in DB.
         //TODO Returning 83? Need the correct movieID!
         public int ReturnNextMovieID()
         {
@@ -315,7 +315,25 @@ namespace DVDLibraryData.Repository
 
                 string query = "Delete from Movies where Movies.MovieID = @movieID";
                 cn.Execute(query, new
-                {movieID });
+                {movieID});
+            }
+        }
+
+        public User CreateUser(User user)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("FirstName", user.FirstName);
+                p.Add("LastName", user.LastName);
+                p.Add("UserID", DbType.Int32, direction: ParameterDirection.Output);
+
+                cn.Execute("AddUser", p, commandType: CommandType.StoredProcedure);
+
+                user.UserID = p.Get<int>("UserID");
+
+                return user;
+
             }
         }
     }

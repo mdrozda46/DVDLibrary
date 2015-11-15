@@ -111,6 +111,10 @@ namespace DVDLibraryBLL
         {
             _repo.ReturnMovieByRentalID(rentalID);
         }
-        
+
+        public User CreateUser(User user)
+        {
+            return _repo.CreateUser(user);
+        }
     }
 }
