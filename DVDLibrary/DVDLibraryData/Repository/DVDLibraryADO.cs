@@ -293,5 +293,30 @@ namespace DVDLibraryData.Repository
 
             }
         }
+
+        //Created for Unit testing: Find total movies in DB.
+        //TODO Returning 83? Need the correct movieID!
+        public int ReturnNextMovieID()
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                int movieID = cn.Query<AddMovieCarrier>("SELECT m.MovieID AUTO_INCREMENT FROM Movies m ORDER BY m.MovieID DESC").ToString().FirstOrDefault();
+
+                return movieID;
+            }
+        }
+
+        //Created for Unit testing: Delete movie after Unit test adds.
+        public void DeleteMovieByID(int movieID)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                //int total = cn.Query<AddMovieCarrier>("SELECT * FROM Movies").ToList().Count();
+
+                string query = "Delete from Movies where Movies.MovieID = @movieID";
+                cn.Execute(query, new
+                {movieID });
+            }
+        }
     }
 }
