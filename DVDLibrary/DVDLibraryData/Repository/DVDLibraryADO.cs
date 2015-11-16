@@ -378,8 +378,11 @@ namespace DVDLibraryData.Repository
                 p.Add("UserID", UserID);
 
                 cn.Execute("AddUserNote", p, commandType: CommandType.StoredProcedure);
+            }
+        }
 
-        public void AddActorToDB(string FirstName, string LastName)
+        public
+            void AddActorToDB(string FirstName, string LastName)
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
