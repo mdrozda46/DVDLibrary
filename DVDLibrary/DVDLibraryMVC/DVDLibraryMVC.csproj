@@ -145,6 +145,7 @@
     <Content Include="Views\User\UserRentalList.cshtml" />
     <Content Include="Views\User\ReturnMovie.cshtml" />
     <Content Include="Views\User\SelectUserRent.cshtml" />
+    <Content Include="Views\User\RateMovie.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

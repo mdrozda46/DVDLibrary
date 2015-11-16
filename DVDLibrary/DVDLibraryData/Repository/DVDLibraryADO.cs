@@ -336,5 +336,50 @@ namespace DVDLibraryData.Repository
 
             }
         }
+
+        public RateMovieCarrier GetMovieByRentalID(int RentalID)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var rateMovie = new RateMovieCarrier();
+
+                var p = new DynamicParameters();
+                p.Add("RentalID", RentalID);
+
+               rateMovie = cn.Query<RateMovieCarrier>("GetMovieByRentalID", p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+                return rateMovie;
+            }
+        }
+
+        public void AddMovieRating(int Rating, int MovieID, int UserID)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+
+                var p = new DynamicParameters();
+                p.Add("Rating", Rating);
+                p.Add("MovieID", MovieID);
+                p.Add("UserID",UserID);
+
+                cn.Execute("AddMovieRating", p, commandType: CommandType.StoredProcedure);
+
+            }
+        }
+
+        public void AddUserNote(string NoteDescription, int MovieID, int UserID)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+
+                var p = new DynamicParameters();
+                p.Add("NoteDescription", NoteDescription);
+                p.Add("MovieID", MovieID);
+                p.Add("UserID", UserID);
+
+                cn.Execute("AddUserNote", p, commandType: CommandType.StoredProcedure);
+
+            }
+        }
     }
 }
