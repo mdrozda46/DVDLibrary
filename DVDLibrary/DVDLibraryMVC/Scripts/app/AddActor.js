@@ -8,8 +8,8 @@ $(document).ready(function () {
     $('#btnSaveActor').click(function () {
         var actor = {};
 
-        actor.firstName = $('#firstname').val();
-        actor.lastName = $('#lastname').val();
+        actor.firstName = $('#inputactorfirstname').val();
+        actor.lastName = $('#inputactorlastname').val();
 
         $.post(index, actor)
             .done()

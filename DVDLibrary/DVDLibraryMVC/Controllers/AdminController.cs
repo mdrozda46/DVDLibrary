@@ -72,7 +72,7 @@ namespace DVDLibraryMVC.Controllers
         public ActionResult DeleteDvD(int MovieID)
         {
             //possible undo implementation
-            Session["DeletedMovie"] = _deleted;
+            //Session["DeletedMovie"] = _deleted;
             _deleted.Push(MovieID);
 
             var ops = new DVDLibraryOperations();
@@ -127,6 +127,7 @@ namespace DVDLibraryMVC.Controllers
             return RedirectToAction("AddMovie");
         }
 
+        [HttpPost]
         public ActionResult UndoDelete()
         {
             var ops = new DVDLibraryOperations();

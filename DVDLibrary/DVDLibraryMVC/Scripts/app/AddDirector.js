@@ -8,8 +8,8 @@ $(document).ready(function () {
     $('#btnSaveDirector').click(function () {
         var director = {};
 
-        director.firstName = $('#firstname').val();
-        director.lastName = $('#lastname').val();
+        director.firstName = $('#inputdirectorfirstname').val();
+        director.lastName = $('#inputdirectorlastname').val();
 
         $.post(index, director)
             .done()
