@@ -1,0 +1,38 @@
+﻿<button class="btn btn-primary col-lg-10 col-lg-offset-2" id="btnShowAddDirector">Add Director</button>
+
+<!-- Modal -->
+<form class="form-horizontal" action="/Admin/DirectorToRepoFromAdd" method="POST" id="AddDirectorForm">
+    <div class="modal fade" id="addDirectorModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Add Director</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h2>Add New Director</h2>
+                            <div class="form-group">
+                                <label for="inputdirectorfirstname" class="control-label">First Name</label>
+                                <input type="text" id="inputdirectorfirstname" class="form-control" name="FirstName" />
+                            </div>
+                            <div class="form-group">
+                                <label for="inputdirectorlastname" class="control-label">Last Name</label>
+                                <input type="text" id="inputdirectorlastname" class="form-control" name="LastName" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" id="btnSaveDirector">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

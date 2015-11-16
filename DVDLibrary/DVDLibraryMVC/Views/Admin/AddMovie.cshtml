@@ -44,10 +44,15 @@
                 @*<select multiple="" id="inputDirectors" name="DirectorID">*@
                 @foreach (var d in Model.Directors)
                 {
-                    <p><input type="checkbox" value=@d.Value name="DirectorID" />@d.Text</p>
+                    <p><input type="checkbox" value=@d.Value name="DirectorID"/>@d.Text</p>
                 }
                 @*</select>*@
                 @*<span class="help-block">Ctrl+click for multiselect</span>*@
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10">
+                @Html.Partial("_AddDirectorModal")
             </div>
         </div>
 
@@ -67,6 +72,11 @@
                     }
                 </select>
                 <span class="help-block">Ctrl+click for multiselect</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10">
+                @Html.Partial("_AddActorModal")
             </div>
         </div>
         <div class="form-group">
@@ -108,4 +118,6 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/app/jquery-validate-defaults.js"></script>
     <script src="~/Scripts/app/AddDVDValidation.js"></script>
+    <script src="~/Scripts/app/AddActor.js"></script>
+    <script src="~/Scripts/app/AddDirector.js"></script>
 }

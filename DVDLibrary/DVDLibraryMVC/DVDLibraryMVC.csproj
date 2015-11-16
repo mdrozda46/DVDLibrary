@@ -94,6 +94,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\app\AddActor.js" />
+    <Content Include="Scripts\app\AddDirector.js" />
     <Content Include="Scripts\app\AddDVDValidation.js" />
     <Content Include="Scripts\app\jquery-validate-defaults.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -145,7 +147,12 @@
     <Content Include="Views\User\UserRentalList.cshtml" />
     <Content Include="Views\User\ReturnMovie.cshtml" />
     <Content Include="Views\User\SelectUserRent.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\User\RateMovie.cshtml" />
+=======
+    <Content Include="Views\Shared\_AddActorModal.cshtml" />
+    <Content Include="Views\Shared\_AddDirectorModal.cshtml" />
+>>>>>>> fc4386124188931de614f62a3b9b03b41fb3107a
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

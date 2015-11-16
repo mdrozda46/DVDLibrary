@@ -211,7 +211,7 @@ namespace DVDLibraryData.Repository
                                        "FROM Notes n inner join Users u on n.UserID = u.UserID " +
                                        "WHERE n.MovieID = @MovieID", new {movieID = Id}).ToList();
 
-                return notes; 
+                return notes;  
             }
         }
 
@@ -379,6 +379,25 @@ namespace DVDLibraryData.Repository
 
                 cn.Execute("AddUserNote", p, commandType: CommandType.StoredProcedure);
 
+        public void AddActorToDB(string FirstName, string LastName)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                string query = "INSERT INTO Actors VALUES (@FirstName, @LastName)";
+
+                cn.Execute(query, new
+                { FirstName, LastName });
+            }
+        }
+
+        public void AddDirectorToDB(string FirstName, string LastName)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                string query = "INSERT INTO Directors VALUES (@FirstName, @LastName)";
+
+                cn.Execute(query, new
+                { FirstName, LastName });
             }
         }
     }
