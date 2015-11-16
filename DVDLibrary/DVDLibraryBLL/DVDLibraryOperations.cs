@@ -116,5 +116,15 @@ namespace DVDLibraryBLL
         {
             return _repo.CreateUser(user);
         }
+
+        public void AddActor(string firstName, string lastName)
+        {
+            _repo.AddActorToDB(firstName, lastName);
+        }
+
+        public void AddDirector(string firstName, string lastName)
+        {
+            _repo.AddDirectorToDB(firstName, lastName);
+        }
     }
 }

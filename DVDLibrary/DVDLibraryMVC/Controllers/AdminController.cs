@@ -104,5 +104,25 @@ namespace DVDLibraryMVC.Controllers
 
             return View(collectionVM);
         }
+
+        [HttpPost]
+        public ActionResult ActorToRepoFromAdd(string firstName, string lastName)
+        {
+            var ops = new DVDLibraryOperations();
+
+            ops.AddActor(firstName, lastName);
+
+            return RedirectToAction("AddMovie");
+        }
+
+        [HttpPost]
+        public ActionResult DirectorToRepoFromAdd(string firstName, string lastName)
+        {
+            var ops = new DVDLibraryOperations();
+
+            ops.AddDirector(firstName, lastName);
+
+            return RedirectToAction("AddMovie");
+        }
     }
 }
