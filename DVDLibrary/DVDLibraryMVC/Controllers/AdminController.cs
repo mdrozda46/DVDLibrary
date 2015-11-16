@@ -127,16 +127,18 @@ namespace DVDLibraryMVC.Controllers
             return RedirectToAction("AddMovie");
         }
 
-        [HttpPost]
-        public ActionResult UndoDelete()
-        {
-            var ops = new DVDLibraryOperations();
-            if (_deleted.Count != 0)
-            {
-                ops.UndoDeleteInDB(_deleted.Pop());
-            }
+        //[HttpPost]
+        //public ActionResult UndoDelete()
+        //{
+        //    int id = _deleted.Pop();
 
-            return RedirectToAction("ViewCollection");
-        }
+        //    var ops = new DVDLibraryOperations();
+        //    if (_deleted.Count != 0)
+        //    {
+        //        ops.UndoDeleteInDB(id);
+        //    }
+
+        //    return View("ViewCollection", collectionVM);
+        //}
     }
 }

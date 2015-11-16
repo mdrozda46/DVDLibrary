@@ -411,7 +411,7 @@ namespace DVDLibraryData.Repository
                 string query = "UPDATE Inventory SET Active=1 WHERE  MovieID=@id";
 
                 cn.Execute(query, new
-                { id });
+                {id});
             }
         }
     }
