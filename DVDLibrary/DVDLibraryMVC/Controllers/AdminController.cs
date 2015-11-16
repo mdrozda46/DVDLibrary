@@ -18,6 +18,7 @@ namespace DVDLibraryMVC.Controllers
         {
             _deleted = new Stack<int>();
         }
+
         // GET: Admin
         public ActionResult Index()
         {
@@ -33,7 +34,7 @@ namespace DVDLibraryMVC.Controllers
             var studios = ops.GetStudios();
             var actors = ops.GetActors();
             var ratings = ops.GetRatings();
-            
+
             var addMovieVM = new AddMovieViewModel(mpaa, genres, directors, studios, actors, ratings);
 
             return View(addMovieVM);
@@ -44,7 +45,7 @@ namespace DVDLibraryMVC.Controllers
         {
             var ops = new DVDLibraryOperations();
             ops.AddMovie(newMovie);
-        
+
             return RedirectToAction("Index");
         }
 
@@ -54,7 +55,7 @@ namespace DVDLibraryMVC.Controllers
             var movies = ops.GetMovieListShortDetail();
 
             var collectionVM = new MovieCollectionViewModel(movies);
-            
+
             return View(collectionVM);
         }
 
