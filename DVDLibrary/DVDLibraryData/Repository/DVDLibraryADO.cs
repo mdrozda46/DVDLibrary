@@ -358,5 +358,16 @@ namespace DVDLibraryData.Repository
                 { FirstName, LastName });
             }
         }
+
+        public void UndoRecentDelete(int id)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                string query = "UPDATE Inventory SET Active=1 WHERE  MovieID=@id";
+
+                cn.Execute(query, new
+                { id });
+            }
+        }
     }
 }

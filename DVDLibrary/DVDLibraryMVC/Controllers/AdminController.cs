@@ -13,6 +13,7 @@ namespace DVDLibraryMVC.Controllers
     public class AdminController : Controller
     {
         private Stack<int> _deleted { get; set; }
+
         public AdminController()
         {
             _deleted = new Stack<int>();
@@ -70,8 +71,8 @@ namespace DVDLibraryMVC.Controllers
         public ActionResult DeleteDvD(int MovieID)
         {
             //possible undo implementation
-            //_deleted.Push(MovieID);
-            //Session["DeletedMovie"] = _deleted;
+            Session["DeletedMovie"] = _deleted;
+            _deleted.Push(MovieID);
 
             var ops = new DVDLibraryOperations();
             ops.DeleteMovie(MovieID);
@@ -123,6 +124,17 @@ namespace DVDLibraryMVC.Controllers
             ops.AddDirector(firstName, lastName);
 
             return RedirectToAction("AddMovie");
+        }
+
+        public ActionResult UndoDelete()
+        {
+            var ops = new DVDLibraryOperations();
+            if (_deleted.Count != 0)
+            {
+                ops.UndoDeleteInDB(_deleted.Pop());
+            }
+
+            return RedirectToAction("ViewCollection");
         }
     }
 }

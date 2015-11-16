@@ -126,5 +126,10 @@ namespace DVDLibraryBLL
         {
             _repo.AddDirectorToDB(firstName, lastName);
         }
+
+        public void UndoDeleteInDB(int id)
+        {
+            _repo.UndoRecentDelete(id);
+        }
     }
 }
