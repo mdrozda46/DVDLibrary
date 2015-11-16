@@ -117,6 +117,26 @@ namespace DVDLibraryBLL
             return _repo.CreateUser(user);
         }
 
+        public RateMovieCarrier GetRateMovieDetailsByRentalID(int RentalID)
+        {
+            var rateMovie = _repo.GetMovieByRentalID(RentalID);
+
+            rateMovie.Ratings = _repo.GetRatings();
+            rateMovie.RentalID = RentalID;
+
+            return rateMovie;
+        }
+
+        public void AddUserReview(int Rating, int MovieID, int UserID, string NoteDescription)
+        {
+            _repo.AddMovieRating(Rating, MovieID, UserID);
+
+            if (NoteDescription != null)
+            {
+                _repo.AddUserNote(NoteDescription, MovieID, UserID);
+            }
+        }
+
         public void AddActor(string firstName, string lastName)
         {
             _repo.AddActorToDB(firstName, lastName);

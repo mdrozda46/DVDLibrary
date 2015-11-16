@@ -147,6 +147,7 @@
     <Content Include="Views\User\UserRentalList.cshtml" />
     <Content Include="Views\User\ReturnMovie.cshtml" />
     <Content Include="Views\User\SelectUserRent.cshtml" />
+    <Content Include="Views\User\RateMovie.cshtml" />
     <Content Include="Views\Shared\_AddActorModal.cshtml" />
     <Content Include="Views\Shared\_AddDirectorModal.cshtml" />
     <None Include="Web.Debug.config">

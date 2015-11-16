@@ -39,4 +39,14 @@ namespace DVDLibraryMVC.Models
             UsersDropDown = dropDown;
         }
     }
+
+    public class RateMovieViewModel
+    {
+        public RateMovieCarrier RateMovie { get; set; }
+
+        public RateMovieViewModel(RateMovieCarrier rateMovie)
+        {
+            this.RateMovie = rateMovie;
+        }
+    }
 }

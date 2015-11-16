@@ -137,7 +137,7 @@ CREATE TABLE dbo.MovieDirectors(
 GO
 CREATE TABLE dbo.Notes(
 	NoteID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	NoteDescription varchar(500) NOT NULL,
+	NoteDescription varchar(2000) NOT NULL,
 	DateOfNote DateTime NOT NULL,
 	UserID int
 	CONSTRAINT FK_UserID2 FOREIGN KEY (UserID) 

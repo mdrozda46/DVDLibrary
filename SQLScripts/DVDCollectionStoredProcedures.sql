@@ -325,3 +325,90 @@ BEGIN
 
 END
 GO
+
+-- GET MOVIE DETAILS BY INVENTORY ID
+CREATE PROCEDURE GetMovieByInventoryID
+(
+@InventoryID int
+)
+
+AS
+BEGIN
+	SELECT @InventoryID as InventoryID, m.MovieID, m.Title, m.ImageURL, m.Synopsis
+	FROM Movies m
+	WHERE m.MovieID = (SELECT i.MovieID	
+						FROM Inventory i 
+						WHERE i.SerialNumberID = @InventoryID)
+END
+GO
+
+-- GET MOVIE DETAILS BY RentalID
+CREATE PROCEDURE GetMovieByRentalID
+(
+@RentalID int
+)
+
+AS
+BEGIN
+	SELECT @RentalID as RentalID, m.MovieID, m.Title, m.ImageURL, m.Synopsis
+	FROM Movies m
+	WHERE m.MovieID = (SELECT i.MovieID	
+						FROM Inventory i 
+						WHERE i.SerialNumberID = 
+							(SELECT rh.SerialNumberID
+							FROM RentalHistory rh
+							WHERE rh.RentalID = @RentalID))
+END
+GO
+
+-- Add Movie Rating
+CREATE PROCEDURE AddMovieRating
+(
+	@Rating int,
+	@MovieID int,
+	@UserID int
+)
+
+AS
+BEGIN
+	
+	INSERT INTO dbo.MovieRatings
+          ( 
+            DateRated,RatingID,MovieID,UserID
+          ) 
+     VALUES 
+          ( 
+			GETDATE(),
+			@Rating,
+			@MovieID,
+			@UserID
+		   )
+			
+END
+GO
+
+-- Add Movie Rating
+CREATE PROCEDURE AddUserNote
+(
+	@NoteDescription varchar(2000),
+	@MovieID int,
+	@UserID int
+)
+
+AS
+BEGIN
+	
+	INSERT INTO dbo.Notes
+          ( 
+            NoteDescription, DateOfNote, UserID, MovieID
+          ) 
+     VALUES 
+          ( 
+			@NoteDescription,
+			GETDATE(),
+			@UserID,
+			@MovieID
+		   )
+			
+END
+GO
