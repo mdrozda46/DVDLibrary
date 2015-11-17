@@ -46,7 +46,7 @@ namespace DVDLibraryMVC.Controllers
             var ops = new DVDLibraryOperations();
             ops.AddMovie(newMovie);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ViewCollection");
         }
 
         public ActionResult ViewCollection()
