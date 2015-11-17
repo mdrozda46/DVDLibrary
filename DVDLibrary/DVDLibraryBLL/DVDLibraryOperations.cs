@@ -59,7 +59,7 @@ namespace DVDLibraryBLL
             }
             foreach (var actor in amc.ActorID)
             {
-                _repo.AddMovieDirectorToDB(id, int.Parse(actor));
+                _repo.AddMovieActorToDB(id, int.Parse(actor));
             }
             for (int i = 0; i < int.Parse(amc.Copies); i++)
             {

@@ -36,16 +36,15 @@ namespace DVDLibraryMVC.Controllers
             return View(userRentalsVM);
         }
 
+
         public ActionResult ReturnMovie(int RentalId)
         {
             var ops = new DVDLibraryOperations();
 
             ops.ReturnMovieByRentalID(RentalId);
+            Session["RentalID"] = RentalId;
 
-            int UserID = (int) Session["userID"];
-            var userRentalsVM = new RentalListViewModel(ops.GetUserOutForRent(UserID));
-
-            return View("UserRentalList", userRentalsVM);
+            return RedirectToAction("RateMovie");
         }
 
         public ActionResult SelectUserRent()
@@ -66,6 +65,7 @@ namespace DVDLibraryMVC.Controllers
 
             return View(moviesVM);
         }
+
 
         [HttpPost]
         public ActionResult CreateNewUser(User user)
@@ -95,6 +95,32 @@ namespace DVDLibraryMVC.Controllers
             ops.RentDVD(movieID, userID);
 
             return View("Index");
+        }
+
+        public ActionResult RateMovie()
+        {
+            int RentalID = (int)Session["RentalID"];
+
+            var ops = new DVDLibraryOperations();
+
+            var rateMovie = ops.GetRateMovieDetailsByRentalID(RentalID);
+            rateMovie.UserID = (int)Session["userID"];
+
+            var rateMovieVM = new RateMovieViewModel(rateMovie);
+
+            return View(rateMovieVM);
+        }
+
+        [HttpPost]
+        public ActionResult RateMovie(RateMovieCarrier rateMovie)
+        {
+
+            var ops = new DVDLibraryOperations();
+            ops.AddUserReview(rateMovie.Rating, rateMovie.MovieID, rateMovie.UserID, rateMovie.Note);
+
+            var userRentalsVM = new RentalListViewModel(ops.GetUserOutForRent(rateMovie.UserID));
+
+            return View("UserRentalList", userRentalsVM);
         }
     }
 }
