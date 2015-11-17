@@ -151,5 +151,20 @@ namespace DVDLibraryBLL
         {
             _repo.UndoRecentDelete(id);
         }
+
+        public List<MovieRentShort> GetMovieListRentShort()
+        {
+            return _repo.GetMovieListRentShort();
+        }
+
+        public List<MovieRating> GetMovieRatingsByID(int movieID)
+        {
+            return _repo.GetMovieRatingByID(movieID);
+        }
+
+        public string RentDVD(int movieID, int userID)
+        {
+            return _repo.RentDVD(movieID, userID);
+        }
     }
 }

@@ -3,6 +3,7 @@
     $('.mselect').select2();
 
     $('#resetBtn').click(function() {
-       // $('#inputActors').clear;
+        $('#inputActors').select2('val', 'All');
+        $('#inputDirectors').select2('val', 'All');
     });
 });

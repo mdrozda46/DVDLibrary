@@ -16,12 +16,7 @@ namespace DVDLibraryMVC.Controllers
         {
             return View();
         }
-
-        public ActionResult ViewCollection()
-        {
-            return View();
-        }
-
+        
         public ActionResult SelectUserReturn()
         {
             var ops = new DVDLibraryOperations();
@@ -61,14 +56,46 @@ namespace DVDLibraryMVC.Controllers
             return View(usersVM);
         }
 
+        public ActionResult ViewCollection(int UserID)
+        {
+            var ops = new DVDLibraryOperations();
+            var moviesVM = new RentMovieShortViewModel(ops.GetMovieListRentShort());
+
+            Session["User"] = UserID;
+
+            return View(moviesVM);
+        }
+
 
         [HttpPost]
         public ActionResult CreateNewUser(User user)
         {
             var ops = new DVDLibraryOperations();
-            Session["User"] = ops.CreateUser(user);
+            ops.CreateUser(user);
 
             return RedirectToAction("SelectUserRent");
+        }
+
+        public ActionResult ViewMovieForRent(int movieID)
+        {
+            var ops = new DVDLibraryOperations();
+            var movie = ops.GetMovieDetails(movieID);
+            var movieRatings = ops.GetMovieRatingsByID(movieID);
+
+            var viewMovieVM = new RentMovieLongViewModel(movieRatings, movie);
+
+            return View(viewMovieVM);
+        }
+
+        public ActionResult RentDVD(int movieID)
+        {
+            var userID = (int) Session["User"];
+
+            var ops = new DVDLibraryOperations();
+            ops.RentDVD(movieID, userID);
+
+            return View("Index");
+
         }
 
         public ActionResult RateMovie()

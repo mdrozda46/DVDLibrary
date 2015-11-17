@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
@@ -412,6 +413,59 @@ namespace DVDLibraryData.Repository
 
                 cn.Execute(query, new
                 {id});
+            }
+        }
+
+        public List<MovieRentShort> GetMovieListRentShort()
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var movies =
+                    cn.Query<MovieRentShort>("GetMovieListForBorrower", commandType: CommandType.StoredProcedure)
+                        .ToList();
+
+                return movies;
+            }
+        }
+
+        public List<MovieRating> GetMovieRatingByID(int movieID)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("MovieID", movieID);
+
+                var ratings = cn.Query<MovieRating>("GetMovieNotesByID", p,
+                    commandType: CommandType.StoredProcedure).ToList();
+
+                return ratings;
+            }
+        }
+
+        public string RentDVD(int movieID, int userID)
+        {
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                
+                var serialNumber =
+                    cn.Query<int>("FindAvailableCopy", new {movieID}, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                
+                if (serialNumber != 0)
+                {
+                    var p1 = new DynamicParameters();
+                    p1.Add("SerialNumberID", serialNumber);
+                    cn.Execute("MarkAsRented", p1, commandType: CommandType.StoredProcedure);
+
+                    var p2 = new DynamicParameters();
+                    p2.Add("UserID", userID);
+                    p2.Add("SerialNumberID", serialNumber);
+
+                    cn.Execute("AddToRentalHistory", p2, commandType: CommandType.StoredProcedure);
+
+                    return "Success!";
+                }
+
+                return "Someone beat you to it!";
             }
         }
     }
