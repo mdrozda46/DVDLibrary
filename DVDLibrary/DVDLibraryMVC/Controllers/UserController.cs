@@ -55,7 +55,7 @@ namespace DVDLibraryMVC.Controllers
         public ActionResult SelectUserRent()
         {
             var ops = new DVDLibraryOperations();
-            var users = ops.GetUsers();
+            var users = ops.GetUsers().ToList();
             var usersVM = new SelectUserViewModel(users);
 
             return View(usersVM);
@@ -68,7 +68,7 @@ namespace DVDLibraryMVC.Controllers
             var ops = new DVDLibraryOperations();
             Session["User"] = ops.CreateUser(user);
 
-            return RedirectToAction("ViewCollection");
+            return RedirectToAction("SelectUserRent");
         }
 
         public ActionResult RateMovie()

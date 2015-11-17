@@ -320,6 +320,7 @@ AS
 BEGIN
 	SELECT UserID, FirstName + ' ' + LastName as Name
 	FROM Users
+	ORDER BY FirstName
 
 END
 GO
