@@ -1,40 +1,42 @@
 ﻿@using System.Diagnostics.Eventing.Reader
 @model DVDLibraryMVC.Models.RentalHistoryViewModel
 
-<div class="row">
-    <h3>Rental History</h3>
-</div>
-<div class="row">
-    <table class="table table-hover table-striped">
-        <thead>
+<h3>Rental History<input type="text" class="input-sm col-lg-offset-8" placeholder="search" name="search-nodata" id="search-nodata" data-list=".searchable" autocomplete="on"></h3>
+    
+<table class="table table-hover table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Title</th>
+        <th>Serial Number</th>
+        <th>Date Borrowed</th>
+        <th>Date Returned</th>
+    </tr>
+    </thead>
+    <tbody class="searchable">
+    @foreach (var h in Model.History)
+    {
         <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Title</th>
-            <th>Serial Number</th>
-            <th>Date Borrowed</th>
-            <th>Date Returned</th>
+            <th>@(Model.History.IndexOf(h) + 1)</th>
+            <th>@h.Name</th>
+            <th>@h.Title</th>
+            <th>@h.SerialNumberID</th>
+            <th>@h.DateBorrowed.ToShortDateString()</th>
+            @if (h.DateReturned.ToString() == "1/1/0001 12:00:00 AM")
+            {
+                <th></th>
+            }
+            else
+            {
+                <th>@h.DateReturned.ToShortDateString()</th>
+            }
         </tr>
-        </thead>
-        <tbody>
-        @foreach (var h in Model.History)
-        {
-            <tr>
-                <th>@(Model.History.IndexOf(h)+1)</th>
-                <th>@h.Name</th>
-                <th>@h.Title</th>
-                <th>@h.SerialNumberID</th>
-                <th>@h.DateBorrowed.ToShortDateString()</th>
-                @if (h.DateReturned.ToString() == "1/1/0001 12:00:00 AM")
-                {
-                    <th></th>
-                }
-                else
-                {
-                    <th>@h.DateReturned.ToShortDateString()</th>
-                }
-            </tr>
-        }
-        </tbody>
-    </table>
-</div>
+    }
+    </tbody>
+</table>
+
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/app/SearchBar.js"></script>
+}
