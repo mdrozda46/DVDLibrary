@@ -1,0 +1,43 @@
+﻿@model DVDLibraryMVC.Models.RentMovieShortViewModel
+
+
+<h3>Movie Collection <input type="text" class="input-sm col-lg-offset-8" placeholder="search" name="search-nodata" id="search-nodata" data-list=".searchable" autocomplete="on">
+</h3>
+
+<table class="table table-hover table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Movie Title</th>
+        <th>MPAA Rating</th>
+        <th>Runtime</th>
+        <th>Genre</th>
+        <th>Owner Rating</th>
+        <th>Availability</th>
+    </tr>
+    </thead>
+    <tbody class="searchable">
+    @foreach (var m in Model.Movies)
+    {
+        <tr>
+            <td>@(Model.Movies.IndexOf(m) + 1)</td>
+            <td>@m.Title</td>
+            <td>@m.MPAARating</td>
+            <td>@m.Runtime</td>
+            <td>@m.Genre</td>
+            <td>@m.Rating</td>
+            <td>@m.NumberAvailable/@m.NumberOfCopies </td>
+            <td><a href="/User/ViewMovieForRent?movieID=@m.MovieID">View</a></td>
+            <td>
+                @if (@m.NumberAvailable != 0)
+                {<a href="/User/RentMovie?movieID=@m.MovieID">Rent</a>}
+            </td>
+        </tr>
+
+    }
+    </tbody>
+</table>
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/app/SearchBar.js"></script>
+}
