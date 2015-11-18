@@ -41,10 +41,6 @@ namespace DVDLibraryTests
             var ops = new DVDLibraryOperations();
             ops.AddMovie(movie);
 
-            var addedTitle = "";
-            var directorCount = 0;
-            var actorCount = 0;
-            var inventory = 0;
 
             var movieAdded = new ViewMovieCarrier();
 

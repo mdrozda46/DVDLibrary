@@ -95,7 +95,7 @@ namespace DVDLibraryMVC.Controllers
             var ops = new DVDLibraryOperations();
             ops.RentDVD(movieID, userID);
 
-            return View("Index");
+            return RedirectToAction("SelectUserRent");
 
         }
 
