@@ -157,7 +157,7 @@ namespace DVDLibraryBLL
             return _repo.GetMovieListRentShort();
         }
 
-        public List<MovieRating> GetMovieRatingsByID(int movieID)
+        public MovieReviewsNotes GetMovieRatingsByID(int movieID)
         {
             return _repo.GetMovieRatingByID(movieID);
         }

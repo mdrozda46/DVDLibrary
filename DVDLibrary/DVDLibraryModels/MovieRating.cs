@@ -9,8 +9,7 @@ namespace DVDLibraryModels
     public class MovieRating
     {
         public string Name { get; set; }
-        public decimal Rating { get; set; }
         public string NoteDescription { get; set; }
-        public DateTime DateRated { get; set; }
+        public DateTime DateOfNote { get; set; }
     }
 }

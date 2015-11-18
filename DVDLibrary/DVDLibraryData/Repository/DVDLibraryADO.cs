@@ -428,19 +428,26 @@ namespace DVDLibraryData.Repository
             }
         }
 
-        public List<MovieRating> GetMovieRatingByID(int movieID)
+        public MovieReviewsNotes GetMovieRatingByID(int movieID)
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
+                var ratingsPackage = new MovieReviewsNotes();
                 var p = new DynamicParameters();
                 p.Add("MovieID", movieID);
 
-                var ratings = cn.Query<MovieRating>("GetMovieNotesByID", p,
+                var notesList = cn.Query<MovieRating>("GetUserNotesByMovieID", p,
                     commandType: CommandType.StoredProcedure).ToList();
 
-                return ratings;
+                ratingsPackage.NotesList = notesList;
+                ratingsPackage.RatingsList =
+                    cn.Query<int>("GetMovieRatingList", p, commandType: CommandType.StoredProcedure).ToList();
+
+                return ratingsPackage;
+
             }
         }
+        
 
         public string RentDVD(int movieID, int userID)
         {

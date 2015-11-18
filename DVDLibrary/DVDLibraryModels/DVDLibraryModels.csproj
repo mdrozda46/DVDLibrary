@@ -51,6 +51,7 @@
     <Compile Include="MovieRating.cs" />
     <Compile Include="MovieRental.cs" />
     <Compile Include="MovieRentShort.cs" />
+    <Compile Include="MovieReviewsNotes.cs" />
     <Compile Include="MPAARatingModel.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="OwnerNote.cs" />
