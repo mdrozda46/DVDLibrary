@@ -478,3 +478,26 @@ VALUES(GetDate(), @UserID, @SerialNumberID)
 
 END
 GO
+
+CREATE PROCEDURE GetUserNotesByMovieID (@MovieID int)
+
+AS
+BEGIN
+
+  SELECT (u.FirstName + ' ' + u.LastName) AS Name, n.DateOfNote, n.NoteDescription FROM Notes n
+  INNER JOIN Users u on n.UserID = u.UserID
+  WHERE n.MovieID = @MovieID
+
+END
+GO
+
+CREATE PROCEDURE GetMovieRatingList (@MovieID int)
+
+AS
+BEGIN
+
+  SELECT RatingID FROM MovieRatings
+  WHERE MovieID = @MovieID
+
+END
+GO
