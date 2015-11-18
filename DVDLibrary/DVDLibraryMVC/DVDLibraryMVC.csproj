@@ -179,6 +179,8 @@
     <Content Include="Views\User\RateMovie.cshtml" />
     <Content Include="Views\Shared\_AddActorModal.cshtml" />
     <Content Include="Views\Shared\_AddDirectorModal.cshtml" />
+    <Content Include="Views\User\ViewCollection.cshtml" />
+    <Content Include="Views\User\ViewMovieForRent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

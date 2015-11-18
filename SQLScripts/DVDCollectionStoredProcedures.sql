@@ -217,15 +217,13 @@ GO
 create procedure GetMovieList
 as
 begin
-select distinct m.MovieID, m.Title, mp.MPAARating, g.Genre, m.RunTime, d.FirstName as [DirectorFirstName], d.LastName as [DirectorLastName], s.Name,
+select distinct m.MovieID, m.Title, mp.MPAARating, g.Genre, m.RunTime, s.Name,
 	  (select count(*) from Inventory i where i.MovieID = m.MovieID and i.OutForRent = 0) as UnitsInStock, 
 	  (select avg(mr.RatingID) from MovieRatings mr where mr.MovieID = m.MovieID) as UserRating
 	    from Movies m	
 	inner join MPAARatings mp on m.MPAARatingID = mp.MPAARatingID
 	inner join Genres g	on m.GenreID = g.GenreID
 	inner join Inventory i on m.MovieID = i.MovieID
-	inner join MovieDirectors md on m.MovieID = md.MovieID
-	inner join Directors d on d.DirectorID = md.DirectorID
 	inner join Studios s on s.StudioID = m.StudioID
 	where i.Active = 1
 end
@@ -322,6 +320,7 @@ AS
 BEGIN
 	SELECT UserID, FirstName + ' ' + LastName as Name
 	FROM Users
+	ORDER BY FirstName
 
 END
 GO
@@ -410,5 +409,72 @@ BEGIN
 			@MovieID
 		   )
 			
+END
+GO
+
+-- Retrieve Movie Collection For Borrower
+CREATE PROCEDURE GetMovieListForBorrower
+
+AS
+BEGIN
+
+	SELECT m.MovieID, m.Title, mp.MPAARating, g.Genre, m.RunTime, r.Rating, COUNT(m.MovieID) as NumberOfCopies, 
+	COUNT(CASE WHEN i.OutForRent = 0 THEN 1 END) as NumberAvailable
+	FROM Movies m
+	INNER JOIN Genres g ON m.GenreID = g.GenreID
+	INNER JOIN Ratings r ON m.OwnerRatingID = r.RatingID
+	INNER JOIN MPAARatings mp ON m.MPAARatingID = mp.MPAARatingID
+	INNER JOIN Inventory i ON m.MovieID = i.MovieID
+	WHERE i.Active = 1
+	GROUP BY m.MovieID, m.Title, mp.MPAARating, g.Genre, m.RunTime, r.Rating
+
+END 
+GO
+
+--Retrieve Movie Rating Notes By MovieID
+CREATE PROCEDURE GetMovieNotesByID (@MovieID int)
+
+AS
+BEGIN
+  SELECT (u.FirstName + ' ' + u.LastName) AS Name, r.Rating, n.NoteDescription, mr.DateRated FROM MovieRatings mr
+  INNER JOIN Users u ON mr.UserID = u.UserID
+  INNER JOIN Ratings r ON mr.RatingID = r.RatingID
+  INNER JOIN Notes n ON mr.UserID = n.UserID
+  WHERE mr.MovieID = @MovieID
+END
+GO
+
+--RentDVD by UserID and MovieID
+CREATE PROCEDURE FindAvailableCopy (@MovieID int)
+
+AS 
+BEGIN 
+
+SELECT TOP 1 SerialNumberID FROM Inventory 
+WHERE MovieId = @MovieID AND Active = 1 AND OutForRent = 0
+
+END 
+GO
+
+CREATE PROCEDURE MarkAsRented (@SerialNumberID int)
+
+AS 
+BEGIN 
+
+UPDATE Inventory 
+SET OutForRent = 1
+WHERE SerialNumberID = @SerialNumberID
+
+END
+GO
+
+CREATE PROCEDURE AddToRentalHistory (@UserID int, @SerialNumberID int)
+
+AS 
+BEGIN
+
+INSERT INTO RentalHistory (DateBorrowed, UserID, SerialNumberID)
+VALUES(GetDate(), @UserID, @SerialNumberID)
+
 END
 GO

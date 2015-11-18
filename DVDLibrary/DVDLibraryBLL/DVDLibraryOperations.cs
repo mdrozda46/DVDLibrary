@@ -59,7 +59,7 @@ namespace DVDLibraryBLL
             }
             foreach (var actor in amc.ActorID)
             {
-                _repo.AddMovieDirectorToDB(id, int.Parse(actor));
+                _repo.AddMovieActorToDB(id, int.Parse(actor));
             }
             for (int i = 0; i < int.Parse(amc.Copies); i++)
             {
@@ -150,6 +150,21 @@ namespace DVDLibraryBLL
         public void UndoDeleteInDB(int id)
         {
             _repo.UndoRecentDelete(id);
+        }
+
+        public List<MovieRentShort> GetMovieListRentShort()
+        {
+            return _repo.GetMovieListRentShort();
+        }
+
+        public List<MovieRating> GetMovieRatingsByID(int movieID)
+        {
+            return _repo.GetMovieRatingByID(movieID);
+        }
+
+        public string RentDVD(int movieID, int userID)
+        {
+            return _repo.RentDVD(movieID, userID);
         }
     }
 }

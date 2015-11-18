@@ -25,6 +25,17 @@ namespace DVDLibraryTests
         }
 
         [Test]
+        public void GetGenresTest()
+        {
+            var repo = new DVDLibraryADO();
+            var Genres = repo.GetGenres();
+
+            Assert.AreEqual(Genres.Count, 9);
+            Assert.AreEqual(Genres[0].Genre, "Action");
+
+        }
+
+        [Test]
         public void GetOwnerNotesTest()
         {
             var repo = new DVDLibraryADO();
@@ -58,7 +69,7 @@ namespace DVDLibraryTests
 
         }
 
-        [TestCase(2, 2)]
+        [TestCase(3, 2)]
         public void GetUserNotesByMovieIDTest(int movieID, int noteCount)
         {
             var repo = new DVDLibraryADO();
