@@ -1,36 +1,35 @@
 ﻿<button class="btn btn-primary" id="btnShowAddActor">Add Actor</button>
 
 <!-- Modal -->
-<form class="form-horizontal" action="~/Admin/ActorToRepoFromAdd" method="POST" id="AddActorForm" style="border-style: none; padding: 0;">
-    <div class="modal fade" id="addActorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Add Actor</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <h2>Add New Actor</h2>
-                            <div class="form-group">
-                                <label for="inputactorfirstname" class="control-label">First Name</label>
-                                <input type="text" id="inputactorfirstname" class="form-control" name="FirstName" />
-                            </div>
-                            <div class="form-group">
-                                <label for="inputactorlastname" class="control-label">Last Name</label>
-                                <input type="text" id="inputactorlastname" class="form-control" name="LastName" />
-                            </div>
+<div class="modal fade" id="addActorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Add Actor</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h2>Add Actor</h2>
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" id="actorfirstName" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" id="actorlastName" class="form-control" />
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" id="btnSaveActor">Save</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" id="btnSaveActor">Save</button>
             </div>
         </div>
     </div>
-</form>
+</div>
+
