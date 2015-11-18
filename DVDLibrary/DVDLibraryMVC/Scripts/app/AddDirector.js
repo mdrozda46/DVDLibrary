@@ -1,4 +1,23 @@
-﻿
+﻿var directoruri = "/api/Directors";
+
+$(document).ready(function () {
+    loadDirectors();
+});
+
+function loadDirectors() {
+    $.getJSON(directoruri)
+        .done(function (data) {
+            $('#inputDirectors option').remove();
+
+            $.each(data, function (index, director) {
+                $(createOption(director)).appendTo($('#inputDirectors'));
+            });
+        });
+};
+
+function createOption(director) {
+    return '<option value="' + director.DirectorID + '">' + director.FirstName + ' ' + director.LastName + '</option>';
+}
 
 $(document).ready(function () {
     $('#btnShowAddDirector').click(function () {
@@ -8,13 +27,16 @@ $(document).ready(function () {
     $('#btnSaveDirector').click(function () {
         var director = {};
 
-        director.firstName = $('#inputdirectorfirstname').val();
-        director.lastName = $('#inputdirectorlastname').val();
+        director.FirstName = $('#directorfirstName').val();
+        director.LastName = $('#directorlastName').val();
 
-        $.post(index, director)
-            .done()
-        .fail(function (jqXhr, status, err) {
-            alert(status + ' - ' + err);
-        });
+        $.post(directoruri, director)
+            .done(function () {
+                loadDirectors();
+                $('#addDirectorModal').modal('hide');
+            })
+            .fail(function (jqXhr, status, err) {
+                alert(status + ' - ' + err);
+            });
     });
 });

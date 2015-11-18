@@ -1,4 +1,23 @@
-﻿
+﻿var actoruri = "/api/Actors";
+
+$(document).ready(function () {
+    loadActors();
+});
+
+function loadActors() {
+    $.getJSON(actoruri)
+        .done(function (data) {
+            $('#inputActors option').remove();
+
+            $.each(data, function (index, actor) {
+                $(createOption(actor)).appendTo($('#inputActors'));
+            });
+        });
+};
+
+function createOption(actor) {
+    return '<option value="' + actor.ActorID + '">' + actor.FirstName + ' ' + actor.LastName + '</option>';
+}
 
 $(document).ready(function () {
     $('#btnShowAddActor').click(function () {
@@ -8,13 +27,16 @@ $(document).ready(function () {
     $('#btnSaveActor').click(function () {
         var actor = {};
 
-        actor.firstName = $('#inputactorfirstname').val();
-        actor.lastName = $('#inputactorlastname').val();
+        actor.FirstName = $('#actorfirstName').val();
+        actor.LastName = $('#actorlastName').val();
 
-        $.post(index, actor)
-            .done()
-        .fail(function (jqXhr, status, err) {
-            alert(status + ' - ' + err);
-        });
+        $.post(actoruri, actor)
+            .done(function () {
+                loadActors();
+                $('#addActorModal').modal('hide');
+            })
+            .fail(function (jqXhr, status, err) {
+                alert(status + ' - ' + err);
+            });
     });
 });

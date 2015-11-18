@@ -381,8 +381,7 @@ namespace DVDLibraryData.Repository
             }
         }
 
-        public
-            void AddActorToDB(string FirstName, string LastName)
+        public void AddActorToDB(string FirstName, string LastName)
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {

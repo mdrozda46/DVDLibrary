@@ -42,10 +42,7 @@
             <label for="inputDirectors" class="col-lg-2 control-label">Directed By</label>
             <div class=" col-lg-6">
                 <select class=" form-control mselect" multiple="multiple" id="inputDirectors" name="DirectorID">
-                @foreach (var d in Model.Directors)
-                {
-                    <option value=@d.Value>@d.Text</option>
-                }
+                    
                 </select>
             </div>
         </div>
@@ -66,10 +63,7 @@
             <label for="inputActors" class="col-lg-2 control-label">Actors</label>
             <div class="col-lg-6">
                 <select multiple="multiple" class="form-control mselect" id="inputActors" name="ActorID">
-                    @foreach (var a in Model.Actors)
-                    {
-                        <option value=@a.Value>@a.Text</option>
-                    }
+
                 </select>
             </div>
         </div>
