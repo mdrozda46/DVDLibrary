@@ -81,8 +81,9 @@ namespace DVDLibraryMVC.Controllers
             var ops = new DVDLibraryOperations();
             var movie = ops.GetMovieDetails(movieID);
             var movieRatings = ops.GetMovieRatingsByID(movieID);
-
+            
             var viewMovieVM = new RentMovieLongViewModel(movieRatings, movie);
+            viewMovieVM.UserID = (int)Session["User"];
 
             return View(viewMovieVM);
         }

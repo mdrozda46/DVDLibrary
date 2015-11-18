@@ -65,6 +65,7 @@ namespace DVDLibraryMVC.Models
     {
         public ViewMovieCarrier Movie { get; set; }
         public List<MovieRating> Ratings { get; set; }
+        public int UserID { get; set; }
         public decimal UserRatingsAverage { get; set; }
         public int NumberOfReviews { get; set; }
 
