@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
 using DVDLibraryModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace DVDLibraryMVC.Models
 {
@@ -48,5 +50,40 @@ namespace DVDLibraryMVC.Models
         {
             this.RateMovie = rateMovie;
         }
+    }
+
+    public class RentMovieShortViewModel
+    {
+        public List<MovieRentShort> Movies { get; set; }
+
+        public RentMovieShortViewModel(List<MovieRentShort> movies)
+        {
+            Movies = movies;
+        }
+    }
+
+    public class RentMovieLongViewModel
+    {
+        public ViewMovieCarrier Movie { get; set; }
+        public MovieReviewsNotes RatingsPackage { get; set; }
+        public int UserID { get; set; }
+        public double UserRatingsAverage { get; set; }
+        public int NumberOfReviews { get; set; }
+
+        public RentMovieLongViewModel(MovieReviewsNotes ratings, ViewMovieCarrier movie)
+        {
+            Movie = movie;
+            RatingsPackage = ratings;
+
+            NumberOfReviews = RatingsPackage.RatingsList.Count();
+            try
+            {
+                UserRatingsAverage = Math.Truncate(RatingsPackage.RatingsList.Average()*100)/100;
+            }
+            catch
+            {
+                UserRatingsAverage = 0;
+            }
+        } 
     }
 }

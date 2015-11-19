@@ -1,0 +1,135 @@
+﻿@using System.ServiceModel.Security
+@model DVDLibraryMVC.Models.RentMovieLongViewModel
+
+<div class="row">
+    <div class="col-md-2">
+        <img src="@Model.Movie.ImageURL" width="150">
+    </div>
+    <div class="col-md-8">
+        <h2>@Model.Movie.Title</h2>
+        <p>Owner Rating: @Model.Movie.OwnerRating</p>
+        @if (@Model.UserRatingsAverage != 0)
+        {
+            <p>Average Rating: @Model.UserRatingsAverage (@Model.NumberOfReviews)</p>
+        }
+        
+    </div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-2">
+        <b>Release Date</b>
+    </div>
+    <div class="col-md-6">
+        @Model.Movie.DateReleased.ToShortDateString()
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>MPAA Rating</b>
+    </div>
+    <div class="col-md-6">
+        @Model.Movie.MPAARating
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Genre</b>
+    </div>
+    <div class="col-md-6">
+        @Model.Movie.Genre
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Runtime</b>
+    </div>
+    <div class="col-md-6">
+        @String.Format("{0}h {1}m", @Model.Movie.RunTime / 60, @Model.Movie.RunTime % 60)
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Director</b>
+    </div>
+    <div class="col-md-6">
+        @foreach (var d in Model.Movie.Director)
+        {
+            @String.Format("{0} {1}", d.FirstName, d.LastName);
+            <br />
+        }
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Studio</b>
+    </div>
+    <div class="col-md-6">
+        @Model.Movie.Studio
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Cast</b>
+    </div>
+    <div class="col-md-6">
+        @foreach (var a in Model.Movie.Actor)
+        {
+            @String.Format("{0} {1}", a.FirstName, a.LastName)
+            <br />
+        }
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Synopsis</b>
+    </div>
+    <div class="col-md-6">
+        @Model.Movie.Synopsis
+    </div>
+</div>
+<br />
+@*<div class="row">
+    <div class="col-md-2">
+        <b>Owner Rating</b>
+    </div>
+    <div class="col-md-6">
+        @Model.Movie.OwnerRating
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <b>Average User Rating</b>
+    </div>
+    <div class="col-md-6">
+        @Model.UserRatingsAverage ( @Model.NumberOfReviews )
+    </div>
+</div>*@
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <a href="/User/ViewCollection?UserID=@Model.UserID" class="btn btn-default">Back</a>
+        <a href="/User/RentDVD?movieID=@Model.Movie.MovieID" class="btn btn-default">Rent</a>
+    </div>
+</div>
+<h4>User Ratings</h4>
+<div class="well">
+
+    @foreach (var r in Model.RatingsPackage.NotesList)
+    {
+        <strong>@r.Name</strong><br/>
+        @r.DateOfNote.ToShortDateString()<br/>
+        @r.NoteDescription<br/>
+        <br />
+    }
+
+</div>

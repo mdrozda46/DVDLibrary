@@ -42,10 +42,7 @@
             <label for="inputDirectors" class="col-lg-2 control-label">Directed By</label>
             <div class=" col-lg-6">
                 <select class=" form-control mselect" multiple="multiple" id="inputDirectors" name="DirectorID">
-                @foreach (var d in Model.Directors)
-                {
-                    <option value=@d.Value>@d.Text</option>
-                }
+                    
                 </select>
             </div>
         </div>
@@ -66,10 +63,7 @@
             <label for="inputActors" class="col-lg-2 control-label">Actors</label>
             <div class="col-lg-6">
                 <select multiple="multiple" class="form-control mselect" id="inputActors" name="ActorID">
-                    @foreach (var a in Model.Actors)
-                    {
-                        <option value=@a.Value>@a.Text</option>
-                    }
+
                 </select>
             </div>
         </div>
@@ -107,12 +101,14 @@
         </div>
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-2">
-                <button type="reset" class="btn btn-default">Reset</button>
+                <button type="reset" class="btn btn-default" id="resetBtn">Reset</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </fieldset>
 </form>
+
+
 
 @section scripts
 {
@@ -122,4 +118,5 @@
     <script src="~/Scripts/app/AddActor.js"></script>
     <script src="~/Scripts/app/AddDirector.js"></script>
     <script src="~/Scripts/app/Select2.js"></script>
+
 }

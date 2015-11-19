@@ -30,9 +30,9 @@ namespace DVDLibraryMVC.Controllers
             var ops = new DVDLibraryOperations();
             var mpaa = ops.GetMPAARatings();
             var genres = ops.GetGenres();
-            var directors = ops.GetDirectors();
-            var studios = ops.GetStudios();
-            var actors = ops.GetActors();
+            var directors = ops.GetDirectors().OrderBy(m => m.FirstName).ToList();
+            var studios = ops.GetStudios().OrderBy(m => m.Name).ToList();
+            var actors = ops.GetActors().OrderBy(m=>m.FirstName).ToList();
             var ratings = ops.GetRatings();
 
             var addMovieVM = new AddMovieViewModel(mpaa, genres, directors, studios, actors, ratings);
@@ -107,25 +107,25 @@ namespace DVDLibraryMVC.Controllers
             return View(collectionVM);
         }
 
-        [HttpPost]
-        public ActionResult ActorToRepoFromAdd(string firstName, string lastName)
-        {
-            var ops = new DVDLibraryOperations();
+        //[HttpPost]
+        //public ActionResult ActorToRepoFromAdd(string firstName, string lastName)
+        //{
+        //    var ops = new DVDLibraryOperations();
 
-            ops.AddActor(firstName, lastName);
+        //    ops.AddActor(firstName, lastName);
 
-            return RedirectToAction("AddMovie");
-        }
+        //    return RedirectToAction("AddMovie");
+        //}
 
-        [HttpPost]
-        public ActionResult DirectorToRepoFromAdd(string firstName, string lastName)
-        {
-            var ops = new DVDLibraryOperations();
+        //[HttpPost]
+        //public ActionResult DirectorToRepoFromAdd(string firstName, string lastName)
+        //{
+        //    var ops = new DVDLibraryOperations();
 
-            ops.AddDirector(firstName, lastName);
+        //    ops.AddDirector(firstName, lastName);
 
-            return RedirectToAction("AddMovie");
-        }
+        //    return RedirectToAction("AddMovie");
+        //}
 
         //[HttpPost]
         //public ActionResult UndoDelete()

@@ -16,12 +16,7 @@ namespace DVDLibraryMVC.Controllers
         {
             return View();
         }
-
-        public ActionResult ViewCollection()
-        {
-            return View();
-        }
-
+        
         public ActionResult SelectUserReturn()
         {
             var ops = new DVDLibraryOperations();
@@ -55,10 +50,20 @@ namespace DVDLibraryMVC.Controllers
         public ActionResult SelectUserRent()
         {
             var ops = new DVDLibraryOperations();
-            var users = ops.GetUsers();
+            var users = ops.GetUsers().ToList();
             var usersVM = new SelectUserViewModel(users);
 
             return View(usersVM);
+        }
+
+        public ActionResult ViewCollection(int UserID)
+        {
+            var ops = new DVDLibraryOperations();
+            var moviesVM = new RentMovieShortViewModel(ops.GetMovieListRentShort());
+
+            Session["User"] = UserID;
+
+            return View(moviesVM);
         }
 
 
@@ -66,9 +71,32 @@ namespace DVDLibraryMVC.Controllers
         public ActionResult CreateNewUser(User user)
         {
             var ops = new DVDLibraryOperations();
-            Session["User"] = ops.CreateUser(user);
+            ops.CreateUser(user);
 
-            return RedirectToAction("ViewCollection");
+            return RedirectToAction("SelectUserRent");
+        }
+
+        public ActionResult ViewMovieForRent(int movieID)
+        {
+            var ops = new DVDLibraryOperations();
+            var movie = ops.GetMovieDetails(movieID);
+            var movieRatings = ops.GetMovieRatingsByID(movieID);
+            
+            var viewMovieVM = new RentMovieLongViewModel(movieRatings, movie);
+            viewMovieVM.UserID = (int)Session["User"];
+
+            return View(viewMovieVM);
+        }
+
+        public ActionResult RentDVD(int movieID)
+        {
+            var userID = (int) Session["User"];
+
+            var ops = new DVDLibraryOperations();
+            ops.RentDVD(movieID, userID);
+
+            return RedirectToAction("SelectUserRent");
+
         }
 
         public ActionResult RateMovie()
