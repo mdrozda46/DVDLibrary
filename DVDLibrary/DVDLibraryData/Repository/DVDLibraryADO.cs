@@ -295,7 +295,6 @@ namespace DVDLibraryData.Repository
         }
         
         //Created for Unit testing: Find next Auto_increment for movieID in DB.
-        //TODO Returning 83? Need the correct movieID!
         public int ReturnNextMovieID()
         {
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))

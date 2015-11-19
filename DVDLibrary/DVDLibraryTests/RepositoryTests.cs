@@ -68,7 +68,6 @@ namespace DVDLibraryTests
         }
 
         //Tests Add movie functionality. Deletes movie after completion.
-        //TODO Works once. Needs to return the Auto_Increment from MovieID.
         [TestCase("Blah", "11/02/2015", 120, "A Boy and his Blah", "http://www.google.com/blah.jpg", 1, 3, 2, 2)]
         public void AddMovieToDBTest(string title, DateTime dateReleased, int runTime, string synopsis, 
             string imageUrl, int genreId, int ownerRatingId, int MPAARatingId, int studioId)
@@ -77,6 +76,7 @@ namespace DVDLibraryTests
 
             //Find the last auto-generated movieID. We want to test that we have 1 more than we started with.
             var currentAutoIncID = repo.ReturnNextMovieID();
+
             currentAutoIncID += 1;
 
             var newMovie = repo.AddMovieToDB(title, dateReleased, runTime, synopsis, imageUrl, genreId, ownerRatingId, MPAARatingId, studioId);
