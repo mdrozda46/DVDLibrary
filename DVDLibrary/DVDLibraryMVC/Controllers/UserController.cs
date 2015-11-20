@@ -76,7 +76,7 @@ namespace DVDLibraryMVC.Controllers
             return RedirectToAction("SelectUserRent");
         }
 
-        public ActionResult ViewMovieForRent(int movieID)
+        public ActionResult ViewMovieForRent(int movieID, int movieInventory)
         {
             var ops = new DVDLibraryOperations();
             var movie = ops.GetMovieDetails(movieID);
@@ -84,6 +84,7 @@ namespace DVDLibraryMVC.Controllers
             
             var viewMovieVM = new RentMovieLongViewModel(movieRatings, movie);
             viewMovieVM.UserID = (int)Session["User"];
+            viewMovieVM.MovieInventory = movieInventory;
 
             return View(viewMovieVM);
         }
@@ -95,7 +96,7 @@ namespace DVDLibraryMVC.Controllers
             var ops = new DVDLibraryOperations();
             ops.RentDVD(movieID, userID);
 
-            return RedirectToAction("SelectUserRent");
+            return RedirectToAction("ViewCollection", new {UserID = userID});
 
         }
 

@@ -69,6 +69,7 @@ namespace DVDLibraryMVC.Models
         public int UserID { get; set; }
         public double UserRatingsAverage { get; set; }
         public int NumberOfReviews { get; set; }
+        public int MovieInventory { get; set; }
 
         public RentMovieLongViewModel(MovieReviewsNotes ratings, ViewMovieCarrier movie)
         {

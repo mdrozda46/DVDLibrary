@@ -27,7 +27,7 @@
             <td>@m.Genre</td>
             <td>@m.Rating</td>
             <td>@m.NumberAvailable/@m.NumberOfCopies </td>
-            <td><a href="/User/ViewMovieForRent?movieID=@m.MovieID">View</a></td>
+            <td><a href="/User/ViewMovieForRent?movieID=@m.MovieID&movieInventory=@m.NumberAvailable">View</a></td>
             <td>
                 @if (@m.NumberAvailable != 0)
                 {<a href="/User/RentDVD?movieID=@m.MovieID">Rent</a>}
