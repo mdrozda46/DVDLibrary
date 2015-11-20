@@ -2,10 +2,12 @@
     $('#AddDVDForm').validate({
         rules: {
             Title: {
-                required: true
+                required: true,
+                maxlength: 30
             },
             DateReleased: {
-                required: true
+                required: true,
+                date: true
             },
             MPAARatingID: {
                 required: true
@@ -15,7 +17,8 @@
             },
             RunTime: {
                 required: true,
-                digits: true
+                digits: true,
+                maxlength: 3
             },
             DirectorID: {
                 required: true
@@ -27,7 +30,8 @@
                 required: true
             },
             Synopsis: {
-                required: true
+                required: true,
+                maxlength: 2000
             },
             OwnerRatingID: {
                 required: true
@@ -37,7 +41,8 @@
                 digits: true
             },
             ImageURL: {
-                required: true
+                required: true,
+                maxlength: 1000
             }
         }
     });

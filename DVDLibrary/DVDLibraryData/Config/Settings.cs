@@ -18,7 +18,7 @@ namespace DVDLibraryData.Config
             {
                 if (string.IsNullOrEmpty(_connectionString))
                 {
-                    _connectionString = WebConfigurationManager.ConnectionStrings["BaseballLeagueCollection"].ConnectionString;
+                    _connectionString = WebConfigurationManager.ConnectionStrings["DVDCollection"].ConnectionString;
                 }
 
                 return _connectionString;
