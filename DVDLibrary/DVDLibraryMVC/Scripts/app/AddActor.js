@@ -10,12 +10,12 @@ function loadActors() {
             $('#inputActors option').remove();
 
             $.each(data, function (index, actor) {
-                $(createOption(actor)).appendTo($('#inputActors'));
+                $(createOptionActor(actor)).appendTo($('#inputActors'));
             });
         });
 };
 
-function createOption(actor) {
+function createOptionActor(actor) {
     return '<option value="' + actor.ActorID + '">' + actor.FirstName + ' ' + actor.LastName + '</option>';
 }
 

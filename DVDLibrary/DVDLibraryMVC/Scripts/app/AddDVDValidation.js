@@ -14,7 +14,8 @@
                 required: true
             },
             RunTime: {
-                required: true
+                required: true,
+                digits: true
             },
             DirectorID: {
                 required: true
@@ -32,7 +33,8 @@
                 required: true
             },
             Copies: {
-                required: true
+                required: true,
+                digits: true
             },
             ImageURL: {
                 required: true

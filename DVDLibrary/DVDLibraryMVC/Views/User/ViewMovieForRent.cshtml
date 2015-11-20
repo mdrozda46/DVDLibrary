@@ -122,10 +122,14 @@
     </div>
 </div>
 <h4>User Ratings</h4>
-@foreach (var r in Model.RatingsPackage.NotesList)
-{
-    <p>Name: @r.Name</p>
-    <p>@r.DateOfNote.ToShortDateString()</p>
-    <p>@r.NoteDescription</p>
-    <br/>
-}
+<div class="well">
+
+    @foreach (var r in Model.RatingsPackage.NotesList)
+    {
+        <strong>@r.Name</strong><br/>
+        @r.DateOfNote.ToShortDateString()<br/>
+        @r.NoteDescription<br/>
+        <br />
+    }
+
+</div>
